@@ -2,17 +2,71 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ */
 class User
 {
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
     private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
     private $email;
+
+    /**
+     * @orm\Column(type="string", length=70)
+     */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=70)
+     */
     private $resetPassword;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
     private $role;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private $dateConnection;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Trick", mappedBy="user")
+     */
+    private $tricks;
+
+    public function __construct()
+    {
+        $this->tricks = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -86,7 +140,7 @@ class User
 
     public function setResetPassword($resetPassword)
     {
-        $this->resetPassword = $password;
+        $this->resetPassword = $resetPassword;
     }
 
     public function setRole($role)
@@ -97,5 +151,41 @@ class User
     public function setDateConnection($dateConnection)
     {
         $this->dateConnection = $dateConnection;
+    }
+
+    /**
+     * @return Collection|Trick[]
+     */
+    public function getTricks(): Collection
+    {
+        return $this->tricks;
+    }
+
+    public function addTrick(Trick $trick): self
+    {
+        if (!$this->tricks->contains($trick)) {
+            $this->tricks[] = $trick;
+            $trick->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrick(Trick $trick): self
+    {
+        if ($this->tricks->contains($trick)) {
+            $this->tricks->removeElement($trick);
+            // set the owning side to null (unless already changed)
+            if ($trick->getUser() === $this) {
+                $trick->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
     }
 }

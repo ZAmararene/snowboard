@@ -2,12 +2,40 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
+ */
 class Picture
 {
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $name;
+
+    /**
+     * @ORM\Column(type="decimal")
+     */
     private $imageSize;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $imageType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trick", inversedBy="pictures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $trick;
 
     public function getId()
     {
@@ -47,5 +75,17 @@ class Picture
     public function setImageType($imageType)
     {
         $this->imageType = $imageType;
+    }
+
+    public function getTrick(): ?Trick
+    {
+        return $this->trick;
+    }
+
+    public function setTrick(?Trick $trick): self
+    {
+        $this->trick = $trick;
+
+        return $this;
     }
 }
