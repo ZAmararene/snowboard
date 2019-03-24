@@ -601,6 +601,11 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@fortawesome/fontawesome-free@^5.8.1":
+  version "5.8.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.8.1.tgz#cbafbfe8894c4e3e3c3a9da6774e249ac1f2da8b"
+  integrity sha512-GJtx6e55qLEOy2gPOsok2lohjpdWNGrYGtQx0FFT/++K4SYx+Z8LlPHdQBaFzKEwH5IbBB4fNgb//uyZjgYXoA==
+
 "@symfony/webpack-encore@^0.24.0":
   version "0.24.0"
   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-0.24.0.tgz#410cd8ef2309016b2dd7dc7e70ca6a0f881824e2"
@@ -6778,7 +6783,7 @@ webpack-manifest-plugin@^2.0.2:
     lodash ">=3.5 <5"
     tapable "^1.0.0"
 
-webpack-notifier@^1.6.0:
+webpack-notifier@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/webpack-notifier/-/webpack-notifier-1.7.0.tgz#4e03ea3ba1c0588d863935363f145d067815068a"
   integrity sha512-L3UKrl500xk0VDYKkwQxy5/BPhBWsZ2xHsAx2Qe3dVKYUEk9+y690RcNTMIUcVOK2fRgK7KK3PA4ccOq1h+fTg==

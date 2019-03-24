@@ -3,115 +3,137 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-         {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/fonts') }}">
+        <link rel="icon" type="image/png" href="{{ asset('images/logo-zina.png') }}" />
+        {% endblock %}
     </head>
     <body>
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top header-3">
-            <div class="top-bar smoothie hidden-xs">
-                <div class="container">
-                    <div class="clearfix">
-                        <ul class="list-inline social-links wow pull-left">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
+        {% block header%}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
 
-                        <div class="pull-right text-right">
-                            <ul class="list-inline">
-                                <li>
-                                    <div><i class="fa fa-envelope-o"></i> email@domain.com</div>
-                                </li>
-                                <li>
-                                    <div class="meta-item"><i class="fa fa-mobile"></i> +44 8780 648 605</div>
-                                </li>
-                            </ul>
+        <!-- Navigation -->
+        <nav class="navbar fixed-top navbar-expand-lg fixed-top py-4">
+            <div class="container">
+                <a class="navbar-brand text-white" href="index.html">
+                    <img src="{{ asset('images/logo-zina.png') }}" class="d-inline-block align-bottom" alt="logo">
+                    Snowboard
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="">Tricks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="">Connexion</a>
+                    </li>
+                </div>
+            </div>
+        </nav>
+
+        {% block javascripts %}{% endblock %}
+
+
+        <div id="footer-wrapper">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="widget about-us-widget">
+                            <h4 class="widget-title"><strong>À propos</strong> Snowboard</h4>
+                            <p>
+                                Le snowboard, surf des neiges, planche à neige est un sport de glisse sur neige.
+                                L'équipement se compose d'une planche de snowboard, d'une paire de fixations
+                                (il en existe plusieurs types) et d'une paire de bottes adaptées (boots).
+                                La position sur la planche est proche de celle du skateur : de profil,
+                                les pieds posés sur une ligne en travers de la planche, l'un derrière l'autre.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h4 class="widget-title"><strong>Derniers</strong> Articles</h4>
+                            <div>
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="widget-img" src="assets/img/widget/widget1.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="media-heading"><a href="#">Trick A</a></span>
+                                        <small class="muted">Publié le 14 April 2015</small>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="widget-img" src="assets/img/widget/widget2.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="media-heading"><a href="#">Trick B</a></span>
+                                        <small class="muted">Publié le 14 April 2015</small>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="widget-img" src="assets/img/widget/widget2.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="media-heading"><a href="#">Trick B</a></span>
+                                        <small class="muted">Publié le 14 April 2015</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h4 class="widget-title">Tags populaires</h4>
+                            <div class="tagcloud">
+                                <a href="#" class="tag-link btn btn-white btn-xs">Big air</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Mute</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Truck driver</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Stalefish</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Flip</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Rotation</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Slide</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Indy</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Japan</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Trick</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Seat belt</a>
+                                <a href="#" class="tag-link btn btn-white btn-xs">Grabs</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container header-3-container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand smoothie logo logo-light" href="index.html"><img src="assets/img/logo.png" alt="logo"></a>
-                    <a class="navbar-brand smoothie logo logo-dark" href="index.html"><img src="assets/img/logo_reverse.png" alt="logo"></a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="main-navigation">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <span class="pe-7s-angle-down"></span></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Headers <span class="pe-7s-angle-down"></span></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Footers <span class="pe-7s-angle-down"></span></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="pe-7s-angle-down"></span></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <span class="pe-7s-angle-down"></span></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <span class="pe-7s-angle-down"></span></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Shop <span class="pe-7s-angle-down"></span></a>
-                        </li>
-                        <li><a href="#search"><i class="pe-7s-search"></i></a></li>
-                        <li><a href="javascript:void(0);" class="side-menu-trigger hidden-xs"><i class="fa fa-bars"></i></a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-
-        <div id="search-wrapper">
-            <button type="button" class="close">×</button>
-            <div class="vertical-center text-center">
-                <form>
-                    <input type="search" value="" placeholder="Enter Search Term" />
-                    <button type="submit" class="btn btn-primary btn-white">Search</button>
-                </form>
-            </div>
         </div>
+        <footer class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center py-3">
+                        <a href="https://github.com/ZAmararene" class="mx-4"><i class="fab fa-github-alt fa-2x"></i></a>
+                        <a href="https://fr.linkedin.com/in/zina-amararene-291b2858" class="mx-4"><i class="fab fa-linkedin-in fa-2x"></i></a>
+                        <a href="https://gitlab.com/zina.amararene" class="mx-4"><i class="fab fa-gitlab fa-2x"></i></a>
+                    </div>
 
-        <!-- Header -->
-        <header id="headerwrap" class="backstretched fullheight no-overlay">
-            <div class="container vertical-center">
-                <div class="intro-text vertical-center text-left smoothie">
-                    <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.2s">Welcome To Kompleet</div>
-                    <div class="intro-sub-heading wow fadeIn secondary-font" data-wow-delay="0.4s">We are here to help you <span class="rotate">grow, profit, succeed</span></div>
-                    <a href="#welcome" class="btn btn-primary btn-white mt30 page-scroll" data-wow-delay="0.6s">Find Out More</a>
+                    <div class="col-md-12 text-center wow">
+                        <span class="copyright text-white">Copyright 2019. Conçu par Zina Amararene </span>
+                    </div>
                 </div>
             </div>
-        </header>
+        </footer>
 
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        {{ encore_entry_script_tags('app') }}
-        <scriptscr="{{ asset('build/app.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+        <scriptscr="{{ asset('build/app.js') }}"></script>
     </body>
 </html>

@@ -1,3 +1,52 @@
 body {
-    background-color: lightgray;
+    padding-top: 56px;
+}
+
+.carousel-item {
+    height: 65vh;
+    min-height: 700px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.portfolio-item {
+    margin-bottom: 30px;
+}
+
+nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
+    color: #E08D34;
+    border-bottom: 2px solid #E08D34;
+}
+.navbar, footer {
+    background-color: #000;
+}
+
+#footer-wrapper{
+    background: url('/images/bg11.jpg') no-repeat;
+    padding: 30px 30px;
+}
+
+.carousel-caption h2{
+    background-color:rgba(0,0,0,.5);
+}
+
+.navbar-brand img{
+    width: 40px;
+    height: 40px;
+}
+
+.widget .tagcloud a{
+    border: 1px solid #E08D34;
+    border-radius: 0;
+    margin-bottom: 10px;
+}
+
+footer a{
+    color: #FFF;
+}
+.nav-link, .media-heading, footer a:hover{
+    color:  #CB442E;
 }
