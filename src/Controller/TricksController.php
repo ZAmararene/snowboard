@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\TrickRepository;
+use App\Repository\PictureRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TricksController extends AbstractController
 {
     /**
      * @Route("/", name="tricks")
      */
-    public function index()
+    public function index(TrickRepository $trickRepo)
     {
         return $this->render('tricks/index.html.twig', [
-            'controller_name' => 'TricksController',
+            'tricks' => $trickRepo->findAll(),
         ]);
     }
 }

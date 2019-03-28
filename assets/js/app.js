@@ -16,7 +16,7 @@ require('@fortawesome/fontawesome-free/js/all.js');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
 
-const $ = require('jquery');
+var $ = require('jquery');
 
 // or you can include specific pieces
 require('bootstrap/js/dist/tooltip');

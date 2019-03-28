@@ -33,11 +33,19 @@ nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
     background-color:rgba(0,0,0,.5);
 }
 
+.card .card-footer{
+    /* background-color:rgba(173,188,231,.5); */
+    background-color:rgba(85,114,242,.2);
+}
+
 .navbar-brand img{
     width: 40px;
     height: 40px;
 }
 
+.title-home{
+    color: #22234A;
+}
 .widget .tagcloud a{
     border: 1px solid #E08D34;
     border-radius: 0;
@@ -49,4 +57,13 @@ footer a{
 }
 .nav-link, .media-heading, footer a:hover{
     color:  #CB442E;
+}
+
+.load-page{
+    bottom: 30%;
+    left: 45%;
+}
+
+#scroll{
+    border-bottom: 1px solid #CB442E;
 }
