@@ -13,19 +13,19 @@
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item active" style="background-image: url('{{ asset('images/bg12.jpg') }}')">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-md-block">
             <h2 class="py-3">La réussite est l'aboutissement d'une succession d'echecs</h2>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('{{ asset('images/bg3.jpg') }}')">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-md-block">
             <h2 class="py-3">La réussite est l'aboutissement d'une succession d'echecs</h2>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('{{ asset('images/bg4.jpg') }}')">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-md-block">
             <h2 class="py-3">La réussite est l'aboutissement d'une succession d'echecs</h2>
             {# <p>This is a description for the third slide.</p> #}
           </div>
@@ -57,17 +57,17 @@
         {% for trick in tricks %}
           <div class="col-lg-4 mb-4">
             <div class="card h-100 rounded-0">
-              <div class="card-body">
+              <div class="card-body img-fluid">
                 <p class="card-text">{{ trick.content}}</p>
               </div>
               <div class="card-footer font-weight-bolder rounded-0">
                 <div class="row">
-                  <div class="col-lg-8 mb-6">
+                  <div class="col-lg-8 col-md-8 col-8 text-truncate">
                     <a href="#" class="text-uppercase text-dark">{{ trick.name }}</a>
                   </div>
-                  <div class="col-lg-4 text-right">
+                  <div class="col-lg-4 col-md-4 col-4 text-right">
                     <a href="" class="pr-3"><i class="fas fa-edit"></i></a>
-                    <a href="" class=""><i class="fas fa-trash-alt"></i></a>
+                    <a href=""><i class="fas fa-trash-alt"></i></a>
                   </div>
                 </div>
               </div>
