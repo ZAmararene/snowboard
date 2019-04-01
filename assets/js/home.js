@@ -4,7 +4,7 @@ $(document).ready(function() {
     $("#scrollBotm").click(function() {
         $('html, body').animate({
             scrollTop: $("#tricks").offset().top
-        }, 1500);
+        }, 1000);
     });
 
     // $('#scrollBotm').click(function(){
@@ -16,7 +16,7 @@ $(document).ready(function() {
         $('html, body').animate({
             scrollTop: '700px'
         },
-        1500);
+        1000);
         return false;
     });
 

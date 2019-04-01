@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
             <link rel="stylesheet" href="{{ asset('build/app.css') }}">
             <link rel="stylesheet" href="{{ asset('build/fonts') }}">
-            <link rel="icon" type="image/png" href="{{ asset('images/logo-zina.png') }}" />
-            <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Adamina" />
+            <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}" />
         {% endblock %}
     </head>
     <body>
@@ -20,7 +20,7 @@
         <nav class="navbar fixed-top navbar-expand-lg fixed-top">
             <div class="container">
                 <a class="navbar-brand text-white" href="index.html">
-                    <img src="{{ asset('images/logo-zina.png') }}" class="d-inline-block align-bottom" alt="logo">
+                    <img src="{{ asset('images/logo.png') }}" class="d-inline-block align-bottom" alt="logo">
                     Snowboard
                 </a>
                 <button class="navbar-toggler navbar-toggler-right navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
