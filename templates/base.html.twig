@@ -47,10 +47,26 @@
             </div>
         </nav>
 
-
         <div id="footer-wrapper" class="py-5">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-4">
+                        <div class="widget py-2">
+                            <div class="menu py-3">
+                                <a class="font-weight-bold" href="{{ path('tricks') }}"><span class="sr-only">(current)</span>Accueil</a>
+                            </div>
+                            <div class="menu py-3">
+                                <a class="font-weight-bold" href="">Tricks</a>
+                            </div>
+                            <div class="menu py-3 mb-4">
+                                {% if not app.user %}
+                                    <a href="" class="font-weight-bold">Connexion</a>
+                                {% else %}
+                                    <a href="" class="font-weight-bold">déconnexion</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4">
                         <div class="widget about-us-widget">
                             <h4><strong>À propos</strong> Snowboard</h4>
@@ -61,40 +77,6 @@
                                 La position sur la planche est proche de celle du skateur : de profil,
                                 les pieds posés sur une ligne en travers de la planche, l'un derrière l'autre.
                             </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="widget">
-                            <h4><strong>Derniers</strong> Articles</h4>
-                            <div class="py-2">
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <img class="widget-img" src="assets/img/widget/widget1.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading"><a href="#">Trick A</a></span>
-                                        <small class="muted text-white">Publié le 14 April 2015</small>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <img class="widget-img" src="assets/img/widget/widget2.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading"><a href="#">Trick B</a></span>
-                                        <small class="muted text-white">Publié le 14 April 2015</small>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="pull-left">
-                                        <img class="widget-img" src="assets/img/widget/widget2.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading"><a href="#">Trick B</a></span>
-                                        <small class="muted text-white">Publié le 14 April 2015</small>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">

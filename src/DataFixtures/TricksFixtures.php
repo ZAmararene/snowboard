@@ -23,8 +23,7 @@ class TricksFixtures extends Fixture
             $groupe = new GroupTrick();
 
             $groupe->setName($faker->sentence());
-            $groupe->setDescription($faker->paragraph());
-            ;
+            $groupe->setDescription($faker->paragraph());;
 
             $manager->persist($groupe);
 
@@ -42,7 +41,7 @@ class TricksFixtures extends Fixture
             $manager->persist($user);
 
             // Pour chaque groupe on va créer entre 4 et 6 figures (tricks)
-            for ($j = 1; $j <= mt_rand(4,6); $j++) {
+            for ($j = 1; $j <= mt_rand(4, 20); $j++) {
                 $trick = new Trick();
 
                 $trick->setGroupe($groupe);
@@ -61,11 +60,11 @@ class TricksFixtures extends Fixture
                     $now = new \DateTime();
                     $interval = $now->diff($trick->getDateAdded()); // difference entre le 2 dates maintenant et date création du trick
                     $days = $interval->days; // donne le nombre de jours
-                    $minimum = '-'.$days.'days'; // pour l'adapter a Faker
+                    $minimum = '-' . $days . 'days'; // pour l'adapter a Faker
 
                     $comment->setPseudo($faker->lastName());
                     $comment->setContent($faker->paragraph());
-                    $comment->setAvatar($faker->imageUrl(50,50,'people'));
+                    $comment->setAvatar($faker->imageUrl(50, 50, 'sports'));
                     $comment->setDateAdded($faker->dateTimeBetween($minimum));
                     $comment->setTrick($trick); // Le commentaire appartient à cette figure
 
@@ -75,7 +74,7 @@ class TricksFixtures extends Fixture
 
                     $picture->setName($faker->sentence());
                     $picture->setImageSize(mt_rand(10000, 20000));
-                    $picture->setImageType($faker->imageUrl(350,200));
+                    $picture->setImageType($faker->imageUrl(350, 200));
                     $picture->setTrick($trick);
 
                     $manager->persist($picture);
@@ -85,7 +84,7 @@ class TricksFixtures extends Fixture
                     $video->setName($faker->sentence());
                     $video->setVideoSize(mt_rand(10000, 20000));
                     $video->setVideoType('avi');
-                    $video->setVideoLink($faker->imageUrl(350,200));
+                    $video->setVideoLink($faker->imageUrl(350, 200));
                     $video->setTrick($trick);
 
                     $manager->persist($video);
