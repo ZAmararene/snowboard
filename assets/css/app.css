@@ -1,4 +1,5 @@
 body {
+    font-family: 'Lora', serif;
     padding-top: 56px;
 }
 
@@ -25,17 +26,28 @@ nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
 }
 
 #footer-wrapper{
-    background: url('/images/bg11.jpg') no-repeat;
-    padding: 30px 30px;
+    background: url('/images/bg1.jpg') no-repeat;
+}
+
+.carousel-caption {
+    margin-bottom: 360px;
 }
 
 .carousel-caption h2{
     background-color:rgba(0,0,0,.5);
 }
 
+.card .card-footer{
+    background-color:rgba(85,114,242,.2);
+}
+
 .navbar-brand img{
     width: 40px;
     height: 40px;
+}
+
+.title-home{
+    color: #22234A;
 }
 
 .widget .tagcloud a{
@@ -44,9 +56,61 @@ nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
     margin-bottom: 10px;
 }
 
+.media-heading a{
+    color:  #E08D34;
+}
+
 footer a{
     color: #FFF;
 }
-.nav-link, .media-heading, footer a:hover{
+
+.nav-link, footer a:hover, .widget h4{
     color:  #CB442E;
+}
+
+.load-page{
+    bottom: 30%;
+    left: 45%;
+}
+
+#scroll{
+    border-bottom: 1px solid #CB442E;
+}
+
+nav{
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+}
+
+@media (max-width: 767.98px) {
+    nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
+        border-bottom: 0;
+    }
+
+    .carousel-caption h2{
+        font-size: 1.3em;
+    }
+
+    #scrollBotm{
+        font-size: 0.8em;
+    }
+
+    nav{
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .navbar-brand{
+        padding-bottom: 1rem !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    nav{
+        padding-top: 1.2rem !important;
+        padding-bottom: 1.2rem !important;
+        margin-bottom: 0;
+    }
+    .navbar-brand{
+        padding-bottom: 1rem !important;
+    }
 }
