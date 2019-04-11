@@ -2,7 +2,9 @@ body {
     font-family: 'Lora', serif;
     padding-top: 56px;
 }
-
+/******************************
+/* Home page
+********************************/
 .carousel-item {
     height: 65vh;
     min-height: 700px;
@@ -89,6 +91,30 @@ footer a {
 nav {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
+}
+
+/******************************
+/* Trick detail
+********************************/
+#img-trick-detail img { /* image du header du détail du trick*/
+    height: 350px;
+}
+
+.card-title {
+    margin-top: 200px;
+}
+
+.separator{
+    /* background-color: #E9ECEF; */
+    border-bottom: 2px solid  #CB442E;
+}
+
+.card-img-overlay h4 {
+    background-color:rgba(0,0,0, 1);
+}
+
+#comments .pseudo {
+    color: #CB442E;
 }
 
 @media (max-width: 767.98px) {

@@ -134,7 +134,7 @@ class Trick
         return $this;
     }
 
-    public function getGroupe(): ?Group
+    public function getGroupe(): ?GroupTrick
     {
         return $this->groupe;
     }

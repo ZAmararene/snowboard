@@ -43,11 +43,11 @@ class TricksFixtures extends Fixture
             // Pour chaque groupe on va créer entre 4 et 6 figures (tricks)
             for ($j = 1; $j <= mt_rand(4, 20); $j++) {
                 $trick = new Trick();
-
+                $content = implode(' ', $faker->paragraphs(8));
                 $trick->setGroupe($groupe);
                 $trick->setUser($user);
                 $trick->setName($faker->sentence());
-                $trick->setContent($faker->paragraph());
+                $trick->setContent($content);
                 $trick->setDateAdded($faker->dateTimeBetween('-6 months'));
                 $trick->setdateModification(new \DateTime());
 
@@ -62,8 +62,9 @@ class TricksFixtures extends Fixture
                     $days = $interval->days; // donne le nombre de jours
                     $minimum = '-' . $days . 'days'; // pour l'adapter a Faker
 
+                    $content = $content = implode(' ', $faker->paragraphs(5));
                     $comment->setPseudo($faker->lastName());
-                    $comment->setContent($faker->paragraph());
+                    $comment->setContent($content);
                     $comment->setAvatar($faker->imageUrl(50, 50, 'sports'));
                     $comment->setDateAdded($faker->dateTimeBetween($minimum));
                     $comment->setTrick($trick); // Le commentaire appartient à cette figure

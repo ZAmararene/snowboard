@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détail de la figure
+{% endblock %}
+
+{% block header %}
+    {% for picture in trick.pictures %}
+        {% if loop.first %}
+        <div class="card text-white rounded-0" id="img-trick-detail">
+            <img src="{{ picture.imageType }}" class=" img-fluid y-100" alt="image neige">
+            <div class="card-img-overlay">
+                <h4 class="card-title text-center text-uppercase font-weight-bold py-3">{{ trick.name }}</h4>
+            </div>
+        </div>
+        {# {% else %}
+        <img src="{{ asset('images/bg7.jpg') }}" class=" img-fluid x-100" alt="image neige"> #}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mb-3">Trick
+        <small>{{ trick.name }}</small>
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('tricks') }}">Accueil</a>
+        </li>
+        <li class="breadcrumb-item active">Détail de la figure</li>
+    </ol>
+    <section id="trick" class="mt-5">
+        <div class="row">
+            {% for picture in trick.pictures %}
+                <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
+                    <div class="trick card h-100 rounded-0">
+                        <img src="{{ picture.imageType }}" alt="">
+                    </div>
+                </div>
+            {% endfor %}
+            {% for video in trick.videos %}
+                <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
+                    <div class="trick card h-100 rounded-0">
+                        <img src="{{ video.videoLink }}" alt="">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-justify py-3">
+                {{ trick.content }}
+            </div>
+        </div>
+        <div class="col-lg-12 info-trick mt-4">
+            <div class="row">
+                <div class="col-lg-4">
+                    <p><span class="font-weight-bold">Publié le : </span><span class="font-italic">{{ trick.dateAdded|date("d/m/Y")}}</span></p>
+                </div>
+                <div class="col-lg-4">
+                    <p class="text-center"><span class="font-weight-bold">Groupe : </span><span class="font-italic">{{ trick.getGroupe().name }}</span></p>
+                </div>
+                {% if trick.dateModification is not empty %}
+                    <div class="col-lg-4 text-right">
+                        <p><span class="font-weight-bold">Modié le : </span><span class="font-italic">{{ trick.dateModification|date("d/m/Y")}}</span></p>
+                    <div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <div class="separator col-lg-4 offset-lg-4"></div>
+    <section id="leave-comment" class="py-5">
+        <div class="row">
+            <h3>Votre commentaire</h3>
+            <div class="col-lg-8">
+
+            </div>
+        </div>
+    </section>
+    <section id="comments" class="py-5">
+        <div class="row my-4">
+            <h3>Les commentaires</h3>
+            <div class="col-lg-10 offset-lg-1">
+                {% for comment in trick.comments %}
+                    <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.avatar}}" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
+                            <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>
+                            <p class="text-justify pl-4">
+                                {{ comment.content | raw }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row my-4">
+        <div class="text-center font-weight-bolder col-lg-12 col-md-12 col-sm-12" id="loader">
+            <a href="#" id="load-more" class="text-dark"><i class="far fa-arrow-alt-circle-down fa-3x"></i><span class="align-middle d-block text-muted"> Charger plus </span></a>
+        </div>
+    </div>
+    </section>
+{% endblock %}
