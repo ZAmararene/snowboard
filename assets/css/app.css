@@ -109,12 +109,33 @@ nav {
     border-bottom: 2px solid  #CB442E;
 }
 
-.card-img-overlay h4 {
+.card-img-overlay h3 {
     background-color:rgba(0,0,0, 1);
 }
 
 #comments .pseudo {
     color: #CB442E;
+}
+
+#leave-comment input.form-control, textarea.form-control {
+    border-radius: 0;
+}
+
+#leave-comment input.form-control {
+    width: 50%;
+}
+
+#leave-comment textarea.form-control {
+    height: 200px !important;
+}
+
+#leave-comment button {
+    background-color: #E08D34;
+    border: 1px solid #E08D34;
+}
+
+#leave-comment label {
+    display: none;
 }
 
 @media (max-width: 767.98px) {
@@ -140,6 +161,14 @@ nav {
 
     .card-img-top img {
         width: 100%;
+    }
+
+    .info-trick p {
+        text-align: left !important;
+    }
+
+    #comments .media-body p {
+        padding-left: 0;
     }
 }
 

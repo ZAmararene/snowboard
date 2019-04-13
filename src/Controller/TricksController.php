@@ -3,7 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use App\Repository\TrickRepository;
+use App\Repository\CommentRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -15,7 +20,7 @@ class TricksController extends AbstractController
     public function index(TrickRepository $trickRepo)
     {
         return $this->render('tricks/index.html.twig', [
-            'tricks' => $trickRepo->findBy([], null, 12, 0),
+            'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, 0),
             'totalTricks' => count($trickRepo->findAll()),
         ]);
     }
@@ -26,17 +31,41 @@ class TricksController extends AbstractController
     public function page(TrickRepository $trickRepo, int $page)
     {
         return $this->render('tricks/page.html.twig', [
-            'tricks' => $trickRepo->findBy([], ['id' => 'ASC'], 12, ($page - 1) * 12),
+            'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, ($page - 1) * 12),
         ]);
     }
 
     /**
      * @Route("/trick/{id}", name="trick_show")
      */
-    public function show(TrickRepository $repoTrick, int $id, Trick $trick)
+    public function showTrick(TrickRepository $repoTrick, Trick $trick, Request $request, ObjectManager $manager, CommentRepository $commentRepo, int $id)
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setDateAdded(new \DateTime());
+            $comment->setTrick($trick);
+            $manager->persist($comment);
+            $manager->flush();
+            return $this->redirectToRoute('trick_show', ['id' => $trick . getId()]);
+        }
+
         return $this->render('tricks/trickShow.html.twig', [
             'trick' => $trick,
+            'comments' => $commentRepo->findBy(['trick' => $id], ['dateAdded' => 'DESC'], 5, 0),
+            'commentForm' => $form->createView(),
+            'totalComments' => count($commentRepo->findBy(['trick' => $id])),
+        ]);
+    }
+
+    /**
+     * @Route("/trickComment/page-{page}/{trickId}", name="comment_page")
+     */
+    public function commentPage(CommentRepository $commentRepo, int $trickId, int $page)
+    {
+        return $this->render('tricks/commentPage.html.twig', [
+            'comments' => $commentRepo->findBy(['trick' => $trickId], ['id' => 'DESC'], 5, ($page - 1) * 5),
         ]);
     }
 }

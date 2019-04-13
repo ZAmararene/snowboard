@@ -5,26 +5,27 @@
 {% endblock %}
 
 {% block header %}
+    {% if trick.pictures is null %}
+        <img src="{{ asset('images/bg7.jpg') }}" class=" img-fluid x-100" alt="image neige">
+    {% endif %}
     {% for picture in trick.pictures %}
         {% if loop.first %}
-        <div class="card text-white rounded-0" id="img-trick-detail">
-            <img src="{{ picture.imageType }}" class=" img-fluid y-100" alt="image neige">
-            <div class="card-img-overlay">
-                <h4 class="card-title text-center text-uppercase font-weight-bold py-3">{{ trick.name }}</h4>
+            <div class="card text-white rounded-0" id="img-trick-detail">
+                <img src="{{ picture.imageType }}" class=" img-fluid y-100" alt="image neige">
+                <div class="card-img-overlay">
+                    <h3 class="card-title text-center text-uppercase font-weight-bold py-3">{{ trick.name }}</h3>
+                </div>
             </div>
-        </div>
-        {# {% else %}
-        <img src="{{ asset('images/bg7.jpg') }}" class=" img-fluid x-100" alt="image neige"> #}
         {% endif %}
     {% endfor %}
 {% endblock %}
 
 {% block body %}
-    <h1 class="mt-4 mb-3">Trick
+    <h2 class="mt-4 mb-3">Trick
         <small>{{ trick.name }}</small>
-    </h1>
+    </h2>
 
-    <ol class="breadcrumb">
+    <ol class="breadcrumb rounded-0">
         <li class="breadcrumb-item">
             <a href="{{ path('tricks') }}">Accueil</a>
         </li>
@@ -48,40 +49,46 @@
             {% endfor %}
         </div>
         <div class="row">
-            <div class="col-lg-12 text-justify py-3">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-justify py-3">
                 {{ trick.content }}
             </div>
         </div>
-        <div class="col-lg-12 info-trick mt-4">
+        <div class="col-lg-12 info-trick my-4">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-12">
                     <p><span class="font-weight-bold">Publié le : </span><span class="font-italic">{{ trick.dateAdded|date("d/m/Y")}}</span></p>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-12">
                     <p class="text-center"><span class="font-weight-bold">Groupe : </span><span class="font-italic">{{ trick.getGroupe().name }}</span></p>
                 </div>
                 {% if trick.dateModification is not empty %}
-                    <div class="col-lg-4 text-right">
-                        <p><span class="font-weight-bold">Modié le : </span><span class="font-italic">{{ trick.dateModification|date("d/m/Y")}}</span></p>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <p class="text-right"><span class="font-weight-bold">Modifié le : </span><span class="font-italic">{{ trick.dateModification|date("d/m/Y")}}</span></p>
                     <div>
                 {% endif %}
             </div>
         </div>
     </section>
-    <div class="separator col-lg-4 offset-lg-4"></div>
-    <section id="leave-comment" class="py-5">
-        <div class="row">
-            <h3>Votre commentaire</h3>
-            <div class="col-lg-8">
 
+    <div class="separator col-lg-4 offset-lg-4"></div>
+
+    <section id="leave-comment" class="my-4">
+        <h3>Votre commentaire</h3>
+        <div class="row">
+            <div class="mx-auto col-lg-10 py-4 rounded-0">
+                {{ form_start(commentForm) }}
+                    {{ form_row(commentForm.pseudo, {'attr' : {'placeholder' : 'Pseudo'}}) }}
+                    {{ form_row(commentForm.content, {'attr' : {'placeholder' : 'Commentaire...'}}) }}
+                    <p class="text-right"><button type="submit" class="btn btn-success rounded-0 pr-4 pl-4">Publier</button></p>
+                {{ form_end(commentForm) }}
             </div>
         </div>
     </section>
-    <section id="comments" class="py-5">
+    <section id="comments">
+        <h3>Les commentaires</h3>
         <div class="row my-4">
-            <h3>Les commentaires</h3>
             <div class="col-lg-10 offset-lg-1">
-                {% for comment in trick.comments %}
+                {% for comment in comments %}
                     <div class="media mt-4">
                         <img class="d-flex mr-3 rounded-circle" src="{{ comment.avatar}}" alt="">
                         <div class="media-body">
@@ -95,10 +102,32 @@
                 {% endfor %}
             </div>
         </div>
+
         <div class="row my-4">
-        <div class="text-center font-weight-bolder col-lg-12 col-md-12 col-sm-12" id="loader">
-            <a href="#" id="load-more" class="text-dark"><i class="far fa-arrow-alt-circle-down fa-3x"></i><span class="align-middle d-block text-muted"> Charger plus </span></a>
-        </div>
+        {% if totalComments > 5 %}
+            <div class="text-center font-weight-bolder col-lg-12 col-md-12 col-sm-12" id="loader">
+                <a href="#" id="load-more" class="text-dark"><i class="far fa-arrow-alt-circle-down fa-3x"></i><span class="align-middle d-block text-muted"> Charger plus </span></a>
+            </div>
+        {% endif %}
     </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var page = 1;
+        var totalComments = {{ totalComments }}
+        var trickId = {{ trick.id }}
+        $("#load-more").on("click", function(e){
+            e.preventDefault();
+            page++;
+            $.ajax({
+                url: "/trickComment/page-" + page + "/" + trickId,
+                success: function(html) {
+                    $("#comments").append(html);
+                    $("#load-more").hide();
+                }
+            });
+        });
+    </script>
 {% endblock %}

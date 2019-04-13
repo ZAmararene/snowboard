@@ -1,0 +1,14 @@
+<div class="col-lg-10 offset-lg-1">
+    {% for comment in comments %}
+        <div class="media mt-4">
+            <img class="d-flex mr-3 rounded-circle" src="{{ comment.avatar}}" alt="">
+            <div class="media-body">
+                <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
+                <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>
+                <p class="text-justify pl-4">
+                    {{ comment.content | raw }}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

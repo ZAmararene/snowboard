@@ -53,7 +53,7 @@ class TricksFixtures extends Fixture
 
                 $manager->persist($trick);
 
-                for ($k = 1; $k < mt_rand(4, 10); ++$k) {
+                for ($k = 1; $k < mt_rand(4, 25); ++$k) {
                     $comment = new Comment();
 
                     // le trick à été mis entre la date de création et maintenant

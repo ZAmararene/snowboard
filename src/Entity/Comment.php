@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -18,11 +19,23 @@ class Comment
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le pseudo ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 50,
+     *     minMessage = "La taille du pseudo doit avoir au moins 5 caractères",
+     *     maxMessage = "La taille du pseudo doit au maximum 50 caractères"
+     * )
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Le contenu ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 10,
+     *     minMessage = "Le contenu doit être supérieur à 10 caractères"
+     * )
      */
     private $content;
 

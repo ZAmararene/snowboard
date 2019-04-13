@@ -106,7 +106,6 @@
       var showTricks = page * 12;
       $.ajax({
         url: "/page-" + page,
-        beforeSend: function(){ $("#loader").show(); },
         success: function(html){
           if (showTricks >= totalTricks) {
             $("#tricks > div").append(html);
