@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationType extends AbstractType
@@ -17,12 +18,9 @@ class RegistrationType extends AbstractType
             ->add('firstName')
             ->add('pseudo')
             ->add('email')
+            ->add('avatar', FileType::class)
             ->add('password', passwordType::class)
-            ->add('confirmPassword', passwordType::class)
-            // ->add('resetPassword')
-            // ->add('role')
-            // ->add('dateConnection')
-        ;
+            ->add('confirmPassword', passwordType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

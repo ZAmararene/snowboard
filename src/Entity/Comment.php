@@ -40,11 +40,6 @@ class Comment
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $avatar;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $dateAdded;
@@ -70,11 +65,6 @@ class Comment
         return $this->content;
     }
 
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
     public function getDateAdded()
     {
         return $this->dateAdded;
@@ -93,11 +83,6 @@ class Comment
     public function setContent($content)
     {
         $this->content = $content;
-    }
-
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
     }
 
     public function setDateAdded($dateAdded)

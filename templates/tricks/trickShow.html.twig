@@ -73,24 +73,27 @@
     <div class="separator col-lg-4 offset-lg-4"></div>
 
     <section id="leave-comment" class="my-4">
-        <h3>Votre commentaire</h3>
-        <div class="row">
-            <div class="mx-auto col-lg-10 py-4 rounded-0">
-                {{ form_start(commentForm) }}
-                    {{ form_row(commentForm.pseudo, {'attr' : {'placeholder' : 'Pseudo'}}) }}
-                    {{ form_row(commentForm.content, {'attr' : {'placeholder' : 'Commentaire...'}}) }}
-                    <p class="text-right"><button type="submit" class="btn btn-success rounded-0 pr-4 pl-4">Publier</button></p>
-                {{ form_end(commentForm) }}
+        {% if app.user %}
+            <h3>Votre commentaire</h3>
+            <div class="row">
+                <div class="mx-auto col-lg-10 py-4 rounded-0">
+                    {{ form_start(commentForm) }}
+                        {{ form_row(commentForm.pseudo, {'attr' : {'placeholder' : 'Pseudo'}}) }}
+                        {{ form_row(commentForm.content, {'attr' : {'placeholder' : 'Commentaire...'}}) }}
+                        <p class="text-right"><button type="submit" class="btn btn-success rounded-0 pr-4 pl-4">Publier</button></p>
+                    {{ form_end(commentForm) }}
+                </div>
             </div>
-        </div>
+        {% endif %}
     </section>
     <section id="comments">
         <h3>Les commentaires</h3>
         <div class="row my-4">
             <div class="col-lg-10 offset-lg-1">
+
                 {% for comment in comments %}
                     <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.avatar}}" alt="">
+                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.trick.user.avatar}}" alt="">
                         <div class="media-body">
                             <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
                             <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>

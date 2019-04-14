@@ -28,6 +28,15 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
+
+            $file = $user->getAvatar();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('upload_directory'),
+                $fileName
+            );
+            $user->setAvatar($fileName);
+
             $manager->persist($user);
             $manager->flush();
 

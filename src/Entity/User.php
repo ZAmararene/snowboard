@@ -69,6 +69,19 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\File(
+     *     maxSize = "1024K",
+     *     mimeTypesMessage = "Télécharger une image avatar valide"
+     * )
+     * @Assert\Image(
+     *     maxWidth = 50,
+     *     maxHeight = 50
+     * )
+     */
+    private $avatar = null;
+
+    /**
      * @orm\Column(type="string", length=70)
      * @Assert\NotBlank(message="Le mot de passe ne peut pas être vide")
      * @Assert\Length(
@@ -130,6 +143,12 @@ class User implements UserInterface
         return $this->pseudo;
     }
 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+
     public function getPassword()
     {
         return $this->password;
@@ -178,6 +197,11 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
     }
 
     public function setPassword($password)

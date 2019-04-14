@@ -33,8 +33,9 @@ class TricksFixtures extends Fixture
             $user->setFirstName($faker->firstName());
             $user->setPseudo($faker->lastName());
             $user->setEmail($faker->email());
+            $user->setAvatar($faker->imageUrl(50, 50, 'sports'));
             $user->setPassword($faker->sentence());
-            $user->setResetPassword('null');
+            // $user->setResetPassword('null');
             $user->setRole("user");
             $user->setDateConnection($faker->dateTimeBetween('-8 months'));
 
@@ -65,7 +66,6 @@ class TricksFixtures extends Fixture
                     $content = $content = implode(' ', $faker->paragraphs(5));
                     $comment->setPseudo($faker->lastName());
                     $comment->setContent($content);
-                    $comment->setAvatar($faker->imageUrl(50, 50, 'sports'));
                     $comment->setDateAdded($faker->dateTimeBetween($minimum));
                     $comment->setTrick($trick); // Le commentaire appartient à cette figure
 
