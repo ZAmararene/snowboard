@@ -34,7 +34,7 @@ class TricksFixtures extends Fixture
             $user->setPseudo($faker->lastName());
             $user->setEmail($faker->email());
             $user->setPassword($faker->sentence());
-            $user->setResetPassword($faker->sentence());
+            $user->setResetPassword('null');
             $user->setRole("user");
             $user->setDateConnection($faker->dateTimeBetween('-8 months'));
 

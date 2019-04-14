@@ -117,7 +117,7 @@ nav {
     color: #CB442E;
 }
 
-#leave-comment input.form-control, textarea.form-control {
+#leave-comment input.form-control, textarea.form-control, #registration input.form-control {
     border-radius: 0;
 }
 
@@ -135,6 +135,13 @@ nav {
 }
 
 #leave-comment label {
+    display: none;
+}
+
+/******************************
+/* Registration
+********************************/
+#registration .form-error-icon {
     display: none;
 }
 
