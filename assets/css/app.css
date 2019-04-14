@@ -139,10 +139,25 @@ nav {
 }
 
 /******************************
-/* Registration
+/* Registration, connection
 ********************************/
 #registration .form-error-icon {
     display: none;
+}
+
+#registration button, #connection button {
+    background-color: #E08D34;
+    border: 1px solid #E08D34;
+    color: #000;
+}
+
+#connection .forgot-password{
+    color: #CB442E;
+}
+
+#connection a.forgot-password:hover{
+    text-decoration: none;
+    color: #22234A;
 }
 
 @media (max-width: 767.98px) {

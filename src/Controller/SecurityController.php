@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/connexion", name="security_login")
+     * @Route("/connection", name="security_login")
      *
      * @return void
      */
