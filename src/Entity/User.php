@@ -70,14 +70,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Assert\File(
+     * @Assert\Image(
+     *     maxWidth = 50,
+     *     maxWidthMessage = "La largeur de l'image doit être inférieur à 50px",
+     *     maxHeight = 50,
+     *     maxHeightMessage = "La hauteur de l'image doit être inférieur à 50px",
      *     maxSize = "1024K",
      *     mimeTypesMessage = "Télécharger une image avatar valide"
      * )
-     * @Assert\Image(
-     *     maxWidth = 50,
-     *     maxHeight = 50
-     * )
+     * @Assert\Blank
      */
     private $avatar = null;
 

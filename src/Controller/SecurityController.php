@@ -29,14 +29,18 @@ class SecurityController extends AbstractController
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
 
-            $file = $user->getAvatar();
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-            $file->move(
-                $this->getParameter('upload_directory'),
-                $fileName
-            );
-            $user->setAvatar($fileName);
-
+            $image = $user->getAvatar();
+            if ($image !== null) {
+                $imageName = md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('upload_directory'),
+                    $imageName
+                );
+                $user->setAvatar($imageName);
+            } else {
+                $imageName = $this->getParameter('avatar_image');
+                $user->setAvatar($imageName);
+            }
             $manager->persist($user);
             $manager->flush();
 

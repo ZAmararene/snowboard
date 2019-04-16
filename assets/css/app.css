@@ -160,6 +160,19 @@ nav {
     color: #22234A;
 }
 
+.custom-file-label, input#registration_avatar.custom-file-input {
+    border-radius: 0 !important;
+}
+
+input#registration_avatar.custom-file-input:disabled {
+    pointer-events: none;
+}
+
+.custom-file-label::after{
+    content: "Télécharger" !important;
+    border-radius: 0;
+}
+
 @media (max-width: 767.98px) {
     nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
         border-bottom: 0;
