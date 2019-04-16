@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Repository\TrickRepository;
-use App\Repository\PictureRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -15,7 +14,18 @@ class TricksController extends AbstractController
     public function index(TrickRepository $trickRepo)
     {
         return $this->render('tricks/index.html.twig', [
-            'tricks' => $trickRepo->findAll(),
+            'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, 0),
+            'totalTricks' => count($trickRepo->findAll()),
+        ]);
+    }
+
+    /**
+     * @Route("/page-{page}", name="tricksPage")
+     */
+    public function page(TrickRepository $trickRepo, int $page)
+    {
+        return $this->render('tricks/page.html.twig', [
+            'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, ($page - 1) * 12),
         ]);
     }
 }

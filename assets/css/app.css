@@ -17,7 +17,7 @@ body {
     margin-bottom: 30px;
 }
 
-nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
+nav ul li a.nav-link:hover, nav ul li a.nav-link:active {
     color: #E08D34;
     border-bottom: 2px solid #E08D34;
 }
@@ -25,7 +25,7 @@ nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
     background-color: #000;
 }
 
-#footer-wrapper{
+#footer-wrapper {
     background: url('/images/bg1.jpg') no-repeat;
 }
 
@@ -33,7 +33,7 @@ nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
     margin-bottom: 360px;
 }
 
-.carousel-caption h2{
+.carousel-caption h2 {
     background-color:rgba(0,0,0,.5);
 }
 
@@ -41,43 +41,52 @@ nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
     background-color:rgba(85,114,242,.2);
 }
 
-.navbar-brand img{
+.navbar-brand img {
     width: 40px;
     height: 40px;
 }
 
-.title-home{
+.title-home {
     color: #22234A;
 }
 
-.widget .tagcloud a{
+.widget .tagcloud a {
     border: 1px solid #E08D34;
     border-radius: 0;
     margin-bottom: 10px;
 }
 
-.media-heading a{
+.widget .menu {
+    border-bottom: 1px solid #E08D34;
+}
+
+.widget .menu a:hover {
+    color : #FFF;
+    text-decoration: none;
+}
+
+.media-heading a {
     color:  #E08D34;
 }
 
-footer a{
+footer a {
     color: #FFF;
 }
 
-.nav-link, footer a:hover, .widget h4{
+.nav-link, footer a:hover, .widget h4 {
     color:  #CB442E;
 }
 
-.load-page{
+.load-page {
     bottom: 30%;
     left: 45%;
 }
 
-#scroll{
+#scroll {
     border-bottom: 1px solid #CB442E;
 }
 
-nav{
+nav {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
 }
@@ -87,30 +96,38 @@ nav{
         border-bottom: 0;
     }
 
-    .carousel-caption h2{
+    .carousel-caption h2 {
         font-size: 1.3em;
     }
 
-    #scrollBotm{
+    #scrollBotm {
         font-size: 0.8em;
     }
 
-    nav{
+    nav {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
-    .navbar-brand{
+    .navbar-brand {
         padding-bottom: 1rem !important;
+    }
+
+    .card-img-top img {
+        width: 100%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    nav{
+    nav {
         padding-top: 1.2rem !important;
         padding-bottom: 1.2rem !important;
         margin-bottom: 0;
     }
-    .navbar-brand{
+    .navbar-brand {
         padding-bottom: 1rem !important;
+    }
+
+    .card-img-top img {
+        width: 100%;
     }
 }

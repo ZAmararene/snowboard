@@ -1,0 +1,25 @@
+{% for trick in tricks %}
+  <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+    <div class="trick card h-100 rounded-0">
+        {% for picture in trick.pictures %}
+          <div class="card-img-top">
+            {% if loop.first %}
+              <img src="{{ picture.imageType }}" class="img-fluid" alt="Image trick">
+            {% endif %}
+          </div>
+        {% endfor %}
+
+      <div class="card-footer font-weight-bolder rounded-0">
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-8 text-truncate">
+            <a href="#" class="text-uppercase text-dark">{{ trick.name }}</a>
+          </div>
+          <div class="col-lg-4 col-md-4 col-4 text-right">
+            <a href="" class="pr-3"><i class="fas fa-edit"></i></a>
+            <a href=""><i class="fas fa-trash-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
