@@ -14,7 +14,7 @@ class TricksController extends AbstractController
     public function index(TrickRepository $trickRepo)
     {
         return $this->render('tricks/index.html.twig', [
-            'tricks' => $trickRepo->findBy([], null, 12, 0),
+            'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, 0),
             'totalTricks' => count($trickRepo->findAll()),
         ]);
     }
@@ -25,7 +25,7 @@ class TricksController extends AbstractController
     public function page(TrickRepository $trickRepo, int $page)
     {
         return $this->render('tricks/page.html.twig', [
-            'tricks' => $trickRepo->findBy([], null, 12, ($page - 1) * 12),
+            'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, ($page - 1) * 12),
         ]);
     }
 }
