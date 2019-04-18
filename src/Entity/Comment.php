@@ -19,13 +19,6 @@ class Comment
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank(message="Le pseudo ne peut pas être vide")
-     * @Assert\Length(
-     *     min = 5,
-     *     max = 50,
-     *     minMessage = "La taille du pseudo doit avoir au moins 5 caractères",
-     *     maxMessage = "La taille du pseudo doit au maximum 50 caractères"
-     * )
      */
     private $pseudo;
 
@@ -49,6 +42,11 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
+     */
+    private $user;
 
     public function getId()
     {
@@ -98,6 +96,18 @@ class Comment
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

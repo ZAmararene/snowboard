@@ -46,6 +46,7 @@ class TricksController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDateAdded(new \DateTime());
             $comment->setTrick($trick);
+            // $comment->setUser($comment->);
             $manager->persist($comment);
             $manager->flush();
             return $this->redirectToRoute('trick_show', ['id' => $trick->getId()]);
@@ -60,7 +61,7 @@ class TricksController extends AbstractController
     }
 
     /**
-     * @Route("/trickComment/page-{page}/{trickId}", name="comment_page")
+     * @Route("/comment/page-{page}/{trickId}", name="comment_page")
      */
     public function commentPage(CommentRepository $commentRepo, int $trickId, int $page)
     {

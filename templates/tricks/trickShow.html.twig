@@ -78,7 +78,6 @@
             <div class="row">
                 <div class="mx-auto col-lg-10 py-4 rounded-0">
                     {{ form_start(commentForm) }}
-                        {{ form_row(commentForm.pseudo, {'attr' : {'placeholder' : 'Pseudo'}}) }}
                         {{ form_row(commentForm.content, {'attr' : {'placeholder' : 'Commentaire...'}}) }}
                         <p class="text-right"><button type="submit" class="btn btn-success rounded-0 pr-4 pl-4">Publier</button></p>
                     {{ form_end(commentForm) }}
@@ -92,8 +91,10 @@
             <div class="col-lg-10 offset-lg-1">
 
                 {% for comment in comments %}
+                {{ dump(comment)}}
+                {#{{ dump(app.user.avatar)}} #}
                     <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.trick.user.avatar}}" alt="">
+                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.user.avatar}}" alt="avatar">
                         <div class="media-body">
                             <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
                             <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>
@@ -125,7 +126,7 @@
             e.preventDefault();
             page++;
             $.ajax({
-                url: "/trickComment/page-" + page + "/" + trickId,
+                url: "/comment/page-" + page + "/" + trickId,
                 success: function(html) {
                     $("#comments").append(html);
                     $("#load-more").hide();

@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
     public function registartion(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
-        $user->setRole('user');
+        // $user->setRole('user');
         $user->setDateConnection(new \DateTime());
 
         $form = $this->createForm(RegistrationType::class, $user);
@@ -38,7 +38,8 @@ class SecurityController extends AbstractController
                 );
                 $user->setAvatar($imageName);
             } else {
-                $imageName = $this->getParameter('avatar_image');
+                $img = $user->getAvatar();
+                $imageName = $this->getParameter('avatar_image') . ".avatar.png";
                 $user->setAvatar($imageName);
             }
             $manager->persist($user);
