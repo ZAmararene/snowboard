@@ -105,12 +105,11 @@ nav {
 }
 
 .separator{
-    /* background-color: #E9ECEF; */
     border-bottom: 2px solid  #CB442E;
 }
 
 .card-img-overlay h3 {
-    background-color:rgba(0,0,0, 1);
+    background-color:rgba(0,0,0, .8);
 }
 
 #comments .pseudo {
@@ -137,6 +136,33 @@ nav {
 #leave-comment label {
     display: none;
 }
+
+.media-body p {
+    padding: 5px;
+}
+
+.card-img-overlay {
+    padding: 0px !important;
+}
+
+.card-img-overlay h3 {
+    padding: 5px;
+}
+
+.card-img-overlay .edit-delete {
+    margin-top: 70px;
+    background-color: #E08D34;
+}
+
+.card-img-overlay .edit-delete a{
+    color: #000;
+    font-size: 1.3em;
+}
+
+.card-img-overlay .edit-delete a:hover{
+    color: #FFF;
+}
+
 
 /******************************
 /* Registration, connection
@@ -205,6 +231,11 @@ input#registration_avatar.custom-file-input:disabled {
     #comments .media-body p {
         padding-left: 0;
     }
+
+    .card-img-overlay h3 {
+        font-size: 1.2em;
+    }
+
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {

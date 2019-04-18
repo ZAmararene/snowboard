@@ -13,6 +13,12 @@
             <div class="card text-white rounded-0" id="img-trick-detail">
                 <img src="{{ picture.imageType }}" class=" img-fluid y-100" alt="image neige">
                 <div class="card-img-overlay">
+                    {% if app.user %}
+                        <div class="edit-delete float-right p-2 mr-5">
+                            <a href="" class="pr-3"><i class="fas fa-edit"></i></a>
+                            <a href=""><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    {% endif %}
                     <h3 class="card-title text-center text-uppercase font-weight-bold py-3">{{ trick.name }}</h3>
                 </div>
             </div>
@@ -21,16 +27,17 @@
 {% endblock %}
 
 {% block body %}
-    <h2 class="mt-4 mb-3">Trick
+    <h3 class="mt-4 mb-3 d-none d-sm-block">Trick
         <small>{{ trick.name }}</small>
-    </h2>
-
-    <ol class="breadcrumb rounded-0">
-        <li class="breadcrumb-item">
-            <a href="{{ path('tricks') }}">Accueil</a>
-        </li>
-        <li class="breadcrumb-item active">Détail de la figure</li>
-    </ol>
+    </h3>
+    <div class="mt-3">
+        <ol class="breadcrumb rounded-0">
+            <li class="breadcrumb-item">
+                <a href="{{ path('tricks') }}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active">Détail de la figure</li>
+        </ol>
+    </div>
     <section id="trick" class="mt-5">
         <div class="row">
             {% for picture in trick.pictures %}
@@ -91,10 +98,8 @@
             <div class="col-lg-10 offset-lg-1">
 
                 {% for comment in comments %}
-                {{ dump(comment)}}
-                {#{{ dump(app.user.avatar)}} #}
                     <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.user.avatar}}" alt="avatar">
+                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.user.avatar }}" alt="avatar">
                         <div class="media-body">
                             <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
                             <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>
