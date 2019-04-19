@@ -69,7 +69,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Image(
      *     maxWidth = 50,
      *     maxWidthMessage = "La largeur de l'image doit être inférieur à 50px",
@@ -78,13 +78,12 @@ class User implements UserInterface
      *     maxSize = "1024K",
      *     mimeTypesMessage = "Télécharger une image avatar valide"
      * )
-     * @Assert\Blank
      */
     private $avatar;
 
     /**
      * @orm\Column(type="string", length=70)
-     * @Assert\NotBlank(message="Le mot de passe ne peut pas être vide")
+     * @Assert\NotBlank(message = "Le mot de passe ne peut pas être vide")
      * @Assert\Length(
      *     min = 8,
      *     minMessage = "La taille du mot de passe doit avoir au moins 8 caractères"

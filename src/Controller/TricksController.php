@@ -46,7 +46,9 @@ class TricksController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDateAdded(new \DateTime());
             $comment->setTrick($trick);
-            // $comment->setUser($comment->);
+            $user = $this->getUser();
+            $comment->setPseudo($user->getPseudo());
+            $comment->setUser($user);
             $manager->persist($comment);
             $manager->flush();
             return $this->redirectToRoute('trick_show', ['id' => $trick->getId()]);

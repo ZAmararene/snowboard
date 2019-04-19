@@ -199,6 +199,12 @@ input#registration_avatar.custom-file-input:disabled {
     border-radius: 0;
 }
 
+#load-medias {
+    display: none;
+}
+
+
+/*Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
     nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
         border-bottom: 0;
@@ -236,8 +242,17 @@ input#registration_avatar.custom-file-input:disabled {
         font-size: 1.2em;
     }
 
-}
+    #show-trick{
+        display: none;
+    }
 
+    #load-medias {
+        display: inline-block;
+        text-align: center;
+    }
+
+}
+/* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
     nav {
         padding-top: 1.2rem !important;
