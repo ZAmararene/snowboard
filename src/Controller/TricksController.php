@@ -56,7 +56,7 @@ class TricksController extends AbstractController
 
         return $this->render('tricks/trickShow.html.twig', [
             'trick' => $trick,
-            'comments' => $commentRepo->findBy(['trick' => $id], ['dateAdded' => 'DESC'], 5, 0),
+            'comments' => $commentRepo->findBy(['trick' => $id], ['dateAdded' => 'DESC'], 10, 0),
             'commentForm' => $form->createView(),
             'totalComments' => count($commentRepo->findBy(['trick' => $id])),
         ]);
@@ -68,7 +68,7 @@ class TricksController extends AbstractController
     public function commentPage(CommentRepository $commentRepo, int $trickId, int $page)
     {
         return $this->render('tricks/commentPage.html.twig', [
-            'comments' => $commentRepo->findBy(['trick' => $trickId], ['id' => 'DESC'], 5, ($page - 1) * 5),
+            'comments' => $commentRepo->findBy(['trick' => $trickId], ['id' => 'DESC'], 10, ($page - 1) * 10),
         ]);
     }
 }

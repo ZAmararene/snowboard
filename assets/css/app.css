@@ -266,4 +266,13 @@ input#registration_avatar.custom-file-input:disabled {
     .card-img-top img {
         width: 100%;
     }
+
+    #show-trick{
+        display: none;
+    }
+
+    #load-medias {
+        display: inline-block;
+        text-align: center;
+    }
 }

@@ -108,9 +108,9 @@
                         <div class="media-body">
                             <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
                             <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>
-                            <p class="text-justify pl-4">
+                            <div class="text-justify pl-4">
                                 {{ comment.content | raw }}
-                            </p>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -118,7 +118,7 @@
         </div>
 
         <div class="row my-4">
-        {% if totalComments > 5 %}
+        {% if totalComments > 10 %}
             <div class="text-center font-weight-bolder col-lg-12 col-md-12 col-sm-12" id="loader">
                 <a href="#" id="load-more" class="text-dark"><i class="far fa-arrow-alt-circle-down fa-3x"></i><span class="align-middle d-block text-muted"> Charger plus </span></a>
             </div>
