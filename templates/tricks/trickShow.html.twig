@@ -104,7 +104,7 @@
 
                 {% for comment in comments %}
                     <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.user.avatar }}" alt="avatar">
+                        <img class="d-flex mr-3 rounded-circle" src="{{ asset('uploads/avatars/') ~ comment.user.avatar }}" alt="avatar">
                         <div class="media-body">
                             <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
                             <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>

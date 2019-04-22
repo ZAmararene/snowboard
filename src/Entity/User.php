@@ -69,7 +69,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=100)
      * @Assert\Image(
      *     maxWidth = 50,
      *     maxWidthMessage = "La largeur de l'image doit être inférieur à 50px",

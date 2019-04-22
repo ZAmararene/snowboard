@@ -1,0 +1,11 @@
+<h3>Vous vous êtes inscrit!</h3>
+Bienvenue
+{{ lastName ~ firstName }}! , merci pour votre inscription.
+
+{# example, assuming you have a route named "login" #}
+Pour vous connecter : <a href="{{ path('security_login') }}">Cliquez ici</a>.
+
+Merci!
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ app.request.getSchemeAndHttpHost() ~ asset('images/bg11.jpg') }}">
