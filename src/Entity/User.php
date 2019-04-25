@@ -31,7 +31,7 @@ class User implements UserInterface
      * @Assert\Length(
      *     min = 4,
      *     max = 100,
-     *     minMessage = "La taille du nom doit avoir au moins 5 caractères",
+     *     minMessage = "La taille du nom doit avoir au moins 4 caractères",
      *     maxMessage = "La taille du nom doit au maximum 100 caractères"
      * )
      */
@@ -43,7 +43,7 @@ class User implements UserInterface
      *  @Assert\Length(
      *     min = 4,
      *     max = 100,
-     *     minMessage = "La taille du prénom doit avoir au moins 5 caractères",
+     *     minMessage = "La taille du prénom doit avoir au moins 4 caractères",
      *     maxMessage = "La taille du prénom doit au maximum 100 caractères"
      * )
      */
@@ -82,12 +82,17 @@ class User implements UserInterface
     private $avatar;
 
     /**
-     * @orm\Column(type="string", length=70)
      * @Assert\NotBlank(message = "Le mot de passe ne peut pas être vide")
      * @Assert\Length(
      *     min = 8,
-     *     minMessage = "La taille du mot de passe doit avoir au moins 8 caractères"
+     *     minMessage = "La taille du mot de passe doit avoir au moins 8 caractères",
+     *     max = 4096
      * )
+     */
+    private $plainPassword;
+
+    /**
+     * @orm\Column(type="string", length=70)
      */
     private $password;
 
@@ -112,7 +117,7 @@ class User implements UserInterface
     private $tricks;
 
     /**
-     * @Assert\EqualTo(propertyPath = "password",
+     * @Assert\EqualTo(propertyPath = "plainPassword",
      *     message = "Veuillez confirmer le même mot de passe"
      * )
      */
@@ -155,6 +160,10 @@ class User implements UserInterface
         return $this->avatar;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
 
     public function getPassword()
     {
@@ -209,6 +218,11 @@ class User implements UserInterface
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
+    }
+
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
     }
 
     public function setPassword($password)

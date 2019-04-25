@@ -19,7 +19,7 @@ class RegistrationType extends AbstractType
             ->add('pseudo')
             ->add('email')
             ->add('avatar', FileType::class, ['data_class' => null, 'required' => false])
-            ->add('password', passwordType::class)
+            ->add('plainPassword', passwordType::class)
             ->add('confirmPassword', passwordType::class);
     }
 
