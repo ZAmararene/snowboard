@@ -29,7 +29,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank(message="Le nom ne peut pas être vide")
      * @Assert\Length(
-     *     min = 5,
+     *     min = 4,
      *     max = 100,
      *     minMessage = "La taille du nom doit avoir au moins 5 caractères",
      *     maxMessage = "La taille du nom doit au maximum 100 caractères"
@@ -41,7 +41,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank(message="Le prénom ne peut pas être vide")
      *  @Assert\Length(
-     *     min = 5,
+     *     min = 4,
      *     max = 100,
      *     minMessage = "La taille du prénom doit avoir au moins 5 caractères",
      *     maxMessage = "La taille du prénom doit au maximum 100 caractères"
@@ -127,6 +127,7 @@ class User implements UserInterface
     {
         $this->tricks = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->setDateConnection(new \DateTime());
     }
 
     public function getId()

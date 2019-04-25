@@ -190,19 +190,19 @@ nav {
     border-radius: 0 !important;
 }
 
-input#registration_avatar.custom-file-input:disabled {
+/* input#registration_avatar.custom-file-input:disabled {
     pointer-events: none;
-}
+} */
 
 .custom-file-label::after{
-    content: "Télécharger" !important;
+    content: "Parcourir" !important;
     border-radius: 0;
+    color:  #E08D34 !important;
 }
 
 #load-medias {
     display: none;
 }
-
 
 /*Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {

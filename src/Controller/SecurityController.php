@@ -15,22 +15,18 @@ class SecurityController extends AbstractController
     /**
      * @Route("/registartion", name="security_registration")
      */
-    public function registartion(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
+    public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
     {
         $user = new User();
-        $user->setDateConnection(new \DateTime());
 
         $form = $this->createForm(RegistrationType::class, $user);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
 
-            $image = $request->files->get('registration')['avatar'];
-
+            $image = $user->getAvatar();
             if ($image !== null) {
                 $imageName = md5(uniqid()) . '.' . $image->guessExtension();
                 $image->move(
@@ -48,13 +44,13 @@ class SecurityController extends AbstractController
             // Envoyer un email de bienvenue à l'utilisateur
             $message = (new \Swift_Message('Inscription au site snowboard'))
                 ->setFrom('zina.amararene@gmail.com')
-                ->setTo($data->getEmail())
+                ->setTo($user->getEmail())
                 ->setBody(
                     $this->renderView(
                         'emails/register.html.twig',
                         [
-                            'lastName' => $data->getLastName(),
-                            'firstName' => $data->getFirstName()
+                            'lastName' => $user->getLastName(),
+                            'firstName' => $user->getFirstName()
                         ]
                     ),
                     'text/html'
