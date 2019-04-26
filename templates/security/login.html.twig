@@ -14,6 +14,16 @@
         </li>
         <li class="breadcrumb-item active">Se connecter</li>
     </ol>
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-warning alert-dismissible fade show w-50 col-md-6 offset-md-3 rounded-0" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
     <section id="connection">
         <div class="row my-5">
             <div class="col-lg-6 offset-lg-3">
@@ -37,4 +47,9 @@
             </div>
         </div>
     </section>
+{% endblock %}
+{% block javascripts %}
+    <script>
+            $('.alert').alert();
+        </script>
 {% endblock %}

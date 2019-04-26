@@ -57,6 +57,8 @@ class SecurityController extends AbstractController
                 );
             $mailer->send($message);
 
+            $this->addFlash('notice', 'Votre inscription à bien été enregistrée');
+
             return $this->redirectToRoute('security_login');
         }
         return $this->render('security/registration.html.twig', [

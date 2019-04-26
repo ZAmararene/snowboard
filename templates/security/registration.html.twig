@@ -14,6 +14,7 @@
         </li>
         <li class="breadcrumb-item active">S'inscrire</li>
     </ol>
+
     <section id="registration">
         <div class="row my-5">
             <div class="col-lg-6 offset-lg-3">
@@ -41,5 +42,6 @@
             let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
             $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
         });
+
     </script>
 {% endblock %}
