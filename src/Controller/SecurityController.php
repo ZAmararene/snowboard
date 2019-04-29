@@ -8,14 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/registartion", name="security_registration")
      */
-    public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
+    public function registration(Request $request, ObjectManager $manager, \Swift_Mailer $mailer)
     {
         $user = new User();
 
@@ -23,9 +22,6 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $hash = $encoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($hash);
-
             $image = $user->getAvatar();
             if ($image !== null) {
                 $imageName = md5(uniqid()) . '.' . $image->guessExtension();
@@ -38,6 +34,7 @@ class SecurityController extends AbstractController
                 $imageName = 'avatar.png';
                 $user->setAvatar($imageName);
             }
+
             $manager->persist($user);
             $manager->flush();
 
