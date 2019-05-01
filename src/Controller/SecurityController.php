@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\Events;
 use App\Form\RegistrationType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SecurityController extends AbstractController
@@ -14,7 +17,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/registartion", name="security_registration")
      */
-    public function registration(Request $request, ObjectManager $manager, \Swift_Mailer $mailer)
+    public function registration(Request $request, ObjectManager $manager, EventDispatcherInterface $eventDispatcher)
     {
         $user = new User();
 
@@ -39,20 +42,8 @@ class SecurityController extends AbstractController
             $manager->flush();
 
             // Envoyer un email de bienvenue à l'utilisateur
-            $message = (new \Swift_Message('Inscription au site snowboard'))
-                ->setFrom('zina.amararene@gmail.com')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        'emails/register.html.twig',
-                        [
-                            'lastName' => $user->getLastName(),
-                            'firstName' => $user->getFirstName()
-                        ]
-                    ),
-                    'text/html'
-                );
-            $mailer->send($message);
+            $event = new GenericEvent($user);
+            $eventDispatcher->dispatch(Events::USER_REGISTERED, $event);
 
             $this->addFlash('notice', 'Votre inscription à bien été enregistrée');
 

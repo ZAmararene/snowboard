@@ -44,7 +44,6 @@ class HashPasswordSubscriber implements EventSubscriber
     }
 
     /**
-     * Undocumented function
      *
      * @param User $entity
      * @return void
