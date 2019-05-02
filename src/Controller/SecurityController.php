@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Service\Events;
 use App\Form\RegistrationType;
+use App\Service\PictureUploader;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/registartion", name="security_registration")
      */
-    public function registration(Request $request, ObjectManager $manager, EventDispatcherInterface $eventDispatcher)
+    public function registration(Request $request, ObjectManager $manager, EventDispatcherInterface $eventDispatcher, PictureUploader $pictureUploader)
     {
         $user = new User();
 
@@ -25,18 +26,9 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $image = $user->getAvatar();
-            if ($image !== null) {
-                $imageName = md5(uniqid()) . '.' . $image->guessExtension();
-                $image->move(
-                    $this->getParameter('upload_directory'),
-                    $imageName
-                );
-                $user->setAvatar($imageName);
-            } else {
-                $imageName = 'avatar.png';
-                $user->setAvatar($imageName);
-            }
+
+            $imageName = $pictureUploader->upload($user->getAvatar());
+            $user->setAvatar($imageName);
 
             $manager->persist($user);
             $manager->flush();

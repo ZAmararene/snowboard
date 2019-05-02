@@ -36,6 +36,15 @@ services:
             $email: '@mailer'
             $sender: '%email.sender%'
 
+    App\Service\PictureUploader:
+        arguments:
+            $targetDirectory: '%upload_directory%'
+
+    App\EventListener\PictureUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
     App\EventSubscriber\HashPasswordSubscriber:
         tags:
-            - { name: doctrine.event_subscriber}
+            - { name: doctrine.event_subscriber }
