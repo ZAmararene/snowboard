@@ -2,7 +2,9 @@ body {
     font-family: 'Lora', serif;
     padding-top: 56px;
 }
-
+/******************************
+/* Home page
+********************************/
 .carousel-item {
     height: 65vh;
     min-height: 700px;
@@ -91,6 +93,118 @@ nav {
     padding-bottom: 1.5rem !important;
 }
 
+/******************************
+/* Trick detail
+********************************/
+#img-trick-detail img { /* image du header du détail du trick*/
+    height: 350px;
+}
+
+.card-title {
+    margin-top: 200px;
+}
+
+.separator{
+    border-bottom: 2px solid  #CB442E;
+}
+
+.card-img-overlay h3 {
+    background-color:rgba(0,0,0, .8);
+}
+
+#comments .pseudo {
+    color: #CB442E;
+}
+
+#leave-comment input.form-control, textarea.form-control, #registration input.form-control {
+    border-radius: 0;
+}
+
+#leave-comment input.form-control {
+    width: 50%;
+}
+
+#leave-comment textarea.form-control {
+    height: 200px !important;
+}
+
+#leave-comment button {
+    background-color: #E08D34;
+    border: 1px solid #E08D34;
+}
+
+#leave-comment label {
+    display: none;
+}
+
+.media-body p {
+    padding: 5px;
+}
+
+.card-img-overlay {
+    padding: 0px !important;
+}
+
+.card-img-overlay h3 {
+    padding: 5px;
+}
+
+.card-img-overlay .edit-delete {
+    margin-top: 70px;
+    background-color: #E08D34;
+}
+
+.card-img-overlay .edit-delete a{
+    color: #000;
+    font-size: 1.3em;
+}
+
+.card-img-overlay .edit-delete a:hover{
+    color: #FFF;
+}
+
+
+/******************************
+/* Registration, connection
+********************************/
+#registration .form-error-icon {
+    display: none;
+}
+
+#registration button, #connection button {
+    background-color: #E08D34;
+    border: 1px solid #E08D34;
+    color: #000;
+}
+
+#connection .forgot-password{
+    color: #CB442E;
+}
+
+#connection a.forgot-password:hover{
+    text-decoration: none;
+    color: #22234A;
+}
+
+.custom-file-label, input#registration_avatar.custom-file-input {
+    border-radius: 0 !important;
+}
+
+/* input#registration_avatar.custom-file-input:disabled {
+    pointer-events: none;
+} */
+
+.custom-file-label::after{
+    content: "Parcourir" !important;
+    border-radius: 0;
+    color:  #E08D34 !important;
+}
+
+#load-medias {
+    display: none;
+}
+
+/*Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
     nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
         border-bottom: 0;
@@ -115,8 +229,30 @@ nav {
     .card-img-top img {
         width: 100%;
     }
-}
 
+    .info-trick p {
+        text-align: left !important;
+    }
+
+    #comments .media-body p {
+        padding-left: 0;
+    }
+
+    .card-img-overlay h3 {
+        font-size: 1.2em;
+    }
+
+    #show-trick{
+        display: none;
+    }
+
+    #load-medias {
+        display: inline-block;
+        text-align: center;
+    }
+
+}
+/* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
     nav {
         padding-top: 1.2rem !important;
@@ -129,5 +265,14 @@ nav {
 
     .card-img-top img {
         width: 100%;
+    }
+
+    #show-trick{
+        display: none;
+    }
+
+    #load-medias {
+        display: inline-block;
+        text-align: center;
     }
 }

@@ -1,0 +1,151 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détail de la figure
+{% endblock %}
+
+{% block header %}
+    {% if trick.pictures is null %}
+        <img src="{{ asset('images/bg7.jpg') }}" class=" img-fluid x-100" alt="image neige">
+    {% endif %}
+        {% for picture in trick.pictures %}
+            {% if loop.first %}
+                <div class="card text-white rounded-0" id="img-trick-detail">
+                    <img src="{{ picture.imageType }}" class=" img-fluid y-100" alt="image neige">
+                    <div class="card-img-overlay">
+                        {% if app.user %}
+                            <div class="edit-delete float-right p-2 mr-5">
+                                <a href="" class="pr-3"><i class="fas fa-edit"></i></a>
+                                <a href=""><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        {% endif %}
+                        <h3 class="card-title text-center text-uppercase font-weight-bold py-3">{{ trick.name }}</h3>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+{% endblock %}
+
+{% block body %}
+    <h3 class="mt-4 mb-3 d-none d-sm-block">Trick
+        <small>{{ trick.name }}</small>
+    </h3>
+    <div class="mt-3">
+        <ol class="breadcrumb rounded-0">
+            <li class="breadcrumb-item">
+                <a href="{{ path('tricks') }}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active">Détail de la figure</li>
+        </ol>
+    </div>
+    <section id="trick" class="mt-5">
+        <div id="show-trick" class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+                {% for picture in trick.pictures %}
+                    <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
+                        <div class="trick card h-100 rounded-0">
+                            <img src="{{ picture.imageType }}" alt="">
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for video in trick.videos %}
+                    <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
+                        <div class="trick card h-100 rounded-0">
+                            <img src="{{ video.videoLink }}" alt="">
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <div id="load-medias" class="mx-auto col-sm-12">
+                <button type="button" class="btn btn-primary rounded-0">Voir les médias</button>
+            </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-justify py-3">
+                {{ trick.content }}
+            </div>
+        </div>
+        <div class="col-lg-12 info-trick my-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p><span class="font-weight-bold">Publié le : </span><span class="font-italic">{{ trick.dateAdded|date("d/m/Y") }}</span></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p class="text-center"><span class="font-weight-bold">Groupe : </span><span class="font-italic">{{ trick.getGroupe().name }}</span></p>
+                </div>
+                {% if trick.dateModification is not empty %}
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <p class="text-right"><span class="font-weight-bold">Modifié le : </span><span class="font-italic">{{ trick.dateModification|date("d/m/Y") }}</span></p>
+                    <div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <div class="separator col-lg-4 offset-lg-4"></div>
+
+    <section id="leave-comment" class="my-4">
+        {% if app.user %}
+            <h3>Votre commentaire</h3>
+            <div class="row">
+                <div class="mx-auto col-lg-10 py-4 rounded-0">
+                    {{ form_start(commentForm) }}
+                        {{ form_row(commentForm.content, {'attr' : {'placeholder' : 'Commentaire...'}}) }}
+                        <p class="text-right"><button type="submit" class="btn btn-success rounded-0 pr-4 pl-4">Publier</button></p>
+                    {{ form_end(commentForm) }}
+                </div>
+            </div>
+        {% endif %}
+    </section>
+    <section id="comments">
+        <h3>Les commentaires</h3>
+        <div class="row my-4">
+            <div class="col-lg-10 offset-lg-1">
+
+                {% for comment in comments %}
+                    <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" src="{{ asset('uploads/avatars/') ~ comment.user.avatar }}" alt="avatar">
+                        <div class="media-body">
+                            <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5> |
+                            <span class="font-italic text-muted"> {{ comment.dateAdded|date("d/m/Y")}}</span>
+                            <div class="text-justify pl-4">
+                                {{ comment.content | raw }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row my-4">
+        {% if totalComments > 10 %}
+            <div class="text-center font-weight-bolder col-lg-12 col-md-12 col-sm-12" id="loader">
+                <a href="#" id="load-more" class="text-dark"><i class="far fa-arrow-alt-circle-down fa-3x"></i><span class="align-middle d-block text-muted"> Charger plus </span></a>
+            </div>
+        {% endif %}
+    </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var page = 1;
+        var totalComments = {{ totalComments }}
+        var trickId = {{ trick.id }}
+        $("#load-more").on("click", function(e){
+            e.preventDefault();
+            page++;
+            $.ajax({
+                url: "/comment/page-" + page + "/" + trickId,
+                success: function(html) {
+                    $("#comments").append(html);
+                    $("#load-more").hide();
+                }
+            });
+        });
+
+        $("#load-medias").on("click", function(){
+            $("#show-trick").toggle();
+        });
+    </script>
+{% endblock %}

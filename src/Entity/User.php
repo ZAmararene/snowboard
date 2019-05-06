@@ -2,14 +2,21 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields = {"email"},
+ *     message = "L'email que vous avez indiqué est déjà utilisé"
+ * )
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -20,23 +27,69 @@ class User
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Le nom ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 4,
+     *     max = 100,
+     *     minMessage = "La taille du nom doit avoir au moins 4 caractères",
+     *     maxMessage = "La taille du nom doit au maximum 100 caractères"
+     * )
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Le prénom ne peut pas être vide")
+     *  @Assert\Length(
+     *     min = 4,
+     *     max = 100,
+     *     minMessage = "La taille du prénom doit avoir au moins 4 caractères",
+     *     maxMessage = "La taille du prénom doit au maximum 100 caractères"
+     * )
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le pseudo ne peut pas être vide")
+     *  @Assert\Length(
+     *     min = 5,
+     *     max = 50,
+     *     minMessage = "La taille du pseudo doit avoir au moins 5 caractères",
+     *     maxMessage = "La taille du pseudo doit au maximum 50 caractères"
+     * )
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le email ne peut pas être vide")
+     *  @Assert\Email()
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\Image(
+     *     maxWidth = 50,
+     *     maxWidthMessage = "La largeur de l'image doit être inférieur à 50px",
+     *     maxHeight = 50,
+     *     maxHeightMessage = "La hauteur de l'image doit être inférieur à 50px",
+     *     maxSize = "1024K",
+     *     mimeTypesMessage = "Télécharger une image avatar valide"
+     * )
+     */
+    private $avatar;
+
+    /**
+     * @Assert\NotBlank(message = "Le mot de passe ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 8,
+     *     minMessage = "La taille du mot de passe doit avoir au moins 8 caractères",
+     *     max = 4096
+     * )
+     */
+    private $plainPassword;
 
     /**
      * @orm\Column(type="string", length=70)
@@ -44,14 +97,14 @@ class User
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=70)
+     * @ORM\Column(type="string", length=70, nullable=true)
      */
-    private $resetPassword;
+    private $resetPassword = null;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $role;
+    private $role = "user";
 
     /**
      * @ORM\Column(type="datetime")
@@ -63,9 +116,23 @@ class User
      */
     private $tricks;
 
+    /**
+     * @Assert\EqualTo(propertyPath = "plainPassword",
+     *     message = "Veuillez confirmer le même mot de passe"
+     * )
+     */
+    private $confirmPassword;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->tricks = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->setDateConnection(new \DateTime());
     }
 
     public function getId()
@@ -88,6 +155,16 @@ class User
         return $this->pseudo;
     }
 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
     public function getPassword()
     {
         return $this->password;
@@ -106,6 +183,11 @@ class User
     public function getDateConnection()
     {
         return $this->dateConnection;
+    }
+
+    public function getConfirmPassword()
+    {
+        return $this->confirmPassword;
     }
 
     public function setId($id)
@@ -133,6 +215,16 @@ class User
         $this->email = $email;
     }
 
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
     public function setPassword($password)
     {
         $this->password = $password;
@@ -151,6 +243,11 @@ class User
     public function setDateConnection($dateConnection)
     {
         $this->dateConnection = $dateConnection;
+    }
+
+    public function setConfirmPassword($confirmPassword)
+    {
+        $this->confirmPassword = $confirmPassword;
     }
 
     /**
@@ -187,5 +284,52 @@ class User
     public function getEmail(): ?string
     {
         return $this->email;
+    }
+
+    public function getUsername()
+    {
+        return $this->pseudo;
+    }
+
+    public function eraseCredentials()
+    { }
+
+    public function getSalt()
+    { }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

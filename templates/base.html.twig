@@ -34,13 +34,16 @@
                     <li class="nav-item">
                         <a class="nav-link font-weight-bold" href="">Tricks</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ path('security_registration') }}" class="nav-link font-weight-bold">Inscription</a>
+                    </li>
                     {% if not app.user %}
                         <li class="nav-item">
-                            <a href="" class="nav-link font-weight-bold">Connexion</a>
+                            <a href="{{ path('security_login') }}" class="nav-link font-weight-bold">Connexion</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a href="" class="nav-link font-weight-bold">déconnexion</a>
+                            <a href="{{ path('security_logout') }}" class="nav-link font-weight-bold">déconnexion</a>
                         </li>
                     {% endif %}
                 </div>
@@ -122,6 +125,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script scr="{{ asset('build/app.js') }}"></script>
+
         {% block javascripts %}{% endblock %}
+
     </body>
 </html>

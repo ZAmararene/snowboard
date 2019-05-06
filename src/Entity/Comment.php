@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -23,13 +24,13 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Le contenu ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 10,
+     *     minMessage = "Le contenu doit être supérieur à 10 caractères"
+     * )
      */
     private $content;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $avatar;
 
     /**
      * @ORM\Column(type="datetime")
@@ -41,6 +42,11 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
+     */
+    private $user;
 
     public function getId()
     {
@@ -55,11 +61,6 @@ class Comment
     public function getContent()
     {
         return $this->content;
-    }
-
-    public function getAvatar()
-    {
-        return $this->avatar;
     }
 
     public function getDateAdded()
@@ -82,11 +83,6 @@ class Comment
         $this->content = $content;
     }
 
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-    }
-
     public function setDateAdded($dateAdded)
     {
         $this->dateAdded = $dateAdded;
@@ -100,6 +96,18 @@ class Comment
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

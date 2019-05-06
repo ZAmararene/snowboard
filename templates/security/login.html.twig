@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block header %}
+    <img src="{{ asset('images/bg14.jpg') }}" class=" img-fluid x-100" alt="image neige">
+{% endblock %}
+
+{% block body %}
+    <h2 class="mt-4 mb-3">Connexion</h2>
+    <ol class="breadcrumb rounded-0">
+        <li class="breadcrumb-item">
+            <a href="{{ path('tricks') }}">Accueil</a>
+        </li>
+        <li class="breadcrumb-item active">Se connecter</li>
+    </ol>
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-warning alert-dismissible fade show w-50 col-md-6 offset-md-3 rounded-0" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    <section id="connection">
+        <div class="row my-5">
+            <div class="col-lg-6 offset-lg-3">
+                <form action="{{ path('security_login') }}" method="post">
+                    <div class="form-group">
+                        <label for="email" class="font-weight-bold">Email</label>
+                        <input type="email" name="_username" class="form-control rounded-0" placeholder="Adresse email" required>
+                        <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre email.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="font-weight-bold">Mot de passe</label>
+                        <input type="password" name="_password" class="form-control rounded-0" placeholder="Password" required>
+                    </div>
+                    <div>
+                        <a href="" class="forgot-password font-weight-bold">Mot de passe oublié</a>
+                    </div>
+                    <div class="text-right">
+                    <button type="submit" class="btn btn-primary rounded-0 font-weight-bold">Connexion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script>
+            $('.alert').alert();
+        </script>
+{% endblock %}

@@ -27,67 +27,71 @@ class TricksFixtures extends Fixture
 
             $manager->persist($groupe);
 
-            $user = new User();
-
-            $user->setLastName($faker->lastName());
-            $user->setFirstName($faker->firstName());
-            $user->setPseudo($faker->lastName());
-            $user->setEmail($faker->email());
-            $user->setPassword($faker->sentence());
-            $user->setResetPassword($faker->sentence());
-            $user->setRole("user");
-            $user->setDateConnection($faker->dateTimeBetween('-8 months'));
-
-            $manager->persist($user);
-
-            // Pour chaque groupe on va créer entre 4 et 6 figures (tricks)
-            for ($j = 1; $j <= mt_rand(4, 20); $j++) {
+            // Pour chaque groupe on va créer entre 2 et 4 tricks
+            for ($j = 1; $j <= 10; $j++) {
                 $trick = new Trick();
 
+                $content = implode(' ', $faker->paragraphs(8));
                 $trick->setGroupe($groupe);
-                $trick->setUser($user);
+                // $trick->setUser($user);
                 $trick->setName($faker->sentence());
-                $trick->setContent($faker->paragraph());
-                $trick->setDateAdded($faker->dateTimeBetween('-6 months'));
+                $trick->setContent($content);
+                $trick->setDateAdded($faker->dateTimeBetween('-4 months'));
                 $trick->setdateModification(new \DateTime());
 
-                $manager->persist($trick);
+                for ($y = 1; $y <= mt_rand(1, 5); $y++) {
+                    $user = new User();
 
-                for ($k = 1; $k < mt_rand(4, 10); ++$k) {
-                    $comment = new Comment();
+                    $user->setLastName($faker->lastName());
+                    $user->setFirstName($faker->firstName());
+                    $user->setPseudo($faker->lastName());
+                    $user->setEmail($faker->email());
+                    $user->setAvatar($faker->imageUrl(50, 50, 'sports'));
+                    $user->setPassword($faker->sentence());
+                    $user->setDateConnection($faker->dateTimeBetween('-6 months'));
 
-                    // le trick à été mis entre la date de création et maintenant
-                    $now = new \DateTime();
-                    $interval = $now->diff($trick->getDateAdded()); // difference entre le 2 dates maintenant et date création du trick
-                    $days = $interval->days; // donne le nombre de jours
-                    $minimum = '-' . $days . 'days'; // pour l'adapter a Faker
+                    $manager->persist($user);
 
-                    $comment->setPseudo($faker->lastName());
-                    $comment->setContent($faker->paragraph());
-                    $comment->setAvatar($faker->imageUrl(50, 50, 'sports'));
-                    $comment->setDateAdded($faker->dateTimeBetween($minimum));
-                    $comment->setTrick($trick); // Le commentaire appartient à cette figure
+                    $trick->setUser($user);
+                    $manager->persist($trick);
 
-                    $manager->persist($comment);
+                    for ($k = 1; $k <= mt_rand(1, 3); ++$k) {
+                        $comment = new Comment();
 
-                    $picture = new Picture();
+                        // le trick à été mis entre la date de création et maintenant
+                        $now = new \DateTime();
+                        $interval = $now->diff($trick->getDateAdded()); // difference entre le 2 dates maintenant et date création du trick
+                        $days = $interval->days; // donne le nombre de jours
+                        $minimum = '-' . $days . 'days'; // pour l'adapter a Faker
 
-                    $picture->setName($faker->sentence());
-                    $picture->setImageSize(mt_rand(10000, 20000));
-                    $picture->setImageType($faker->imageUrl(350, 200));
-                    $picture->setTrick($trick);
+                        $content = $content = implode(' ', $faker->paragraphs(5));
+                        $comment->setPseudo($faker->lastName());
+                        $comment->setContent($content);
+                        $comment->setDateAdded($faker->dateTimeBetween($minimum));
+                        $comment->setTrick($trick); // Le commentaire appartient à cette figure
+                        $comment->setUser($user);
 
-                    $manager->persist($picture);
+                        $manager->persist($comment);
 
-                    $video = new Video();
+                        $picture = new Picture();
 
-                    $video->setName($faker->sentence());
-                    $video->setVideoSize(mt_rand(10000, 20000));
-                    $video->setVideoType('avi');
-                    $video->setVideoLink($faker->imageUrl(350, 200));
-                    $video->setTrick($trick);
+                        $picture->setName($faker->sentence());
+                        $picture->setImageSize(mt_rand(10000, 20000));
+                        $picture->setImageType($faker->imageUrl(350, 200, 'sports'));
+                        $picture->setTrick($trick);
 
-                    $manager->persist($video);
+                        $manager->persist($picture);
+
+                        $video = new Video();
+
+                        $video->setName($faker->sentence());
+                        $video->setVideoSize(mt_rand(10000, 20000));
+                        $video->setVideoType('avi');
+                        $video->setVideoLink($faker->imageUrl(350, 200, 'sports'));
+                        $video->setTrick($trick);
+
+                        $manager->persist($video);
+                    }
                 }
             }
         }

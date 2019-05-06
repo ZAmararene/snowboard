@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block header %}
+    <img src="{{ asset('images/bg14.jpg') }}" class=" img-fluid x-100" alt="image neige">
+{% endblock %}
+
+{% block body %}
+    <h2 class="mt-4 mb-3">Inscription</h2>
+    <ol class="breadcrumb rounded-0">
+        <li class="breadcrumb-item">
+            <a href="{{ path('tricks') }}">Accueil</a>
+        </li>
+        <li class="breadcrumb-item active">S'inscrire</li>
+    </ol>
+
+    <section id="registration">
+        <div class="row my-5">
+            <div class="col-lg-6 offset-lg-3">
+                {{ form_start(form) }}
+                    {{ form_row(form.lastName, {'label' : 'Nom *'}) }}
+                    {{ form_row(form.firstName, {'label' : 'Prénom *'}) }}
+                    {{ form_row(form.pseudo, {'label' : 'Pseudo *'}) }}
+                    {{ form_row(form.email, {'label' : 'Email *'}) }}
+                    {{ form_row(form.avatar, {'attr': {'novalidate' : 'novalidate', 'placeholder' : 'Votre avatar (facultatif)'} })}}
+                    {{ form_row(form.plainPassword, {'label' : 'Mot de passe *'}) }}
+                    {{ form_row(form.confirmPassword, {'label' : 'Confirmation du mot de passe *'}) }}
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success rounded-0 font-weight-bold">Inscription</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {# Correction du bug lié au téléchargement de fichier de bootstrap 4, le fichier ou image téléchargé n'apparait pas dans le input #}
+    <script>
+        $(document).on('change', '.custom-file-input', function () {
+            let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+            $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
+        });
+
+    </script>
+{% endblock %}
