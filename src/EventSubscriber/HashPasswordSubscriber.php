@@ -19,7 +19,10 @@ class HashPasswordSubscriber implements EventSubscriber
 
     public function getSubscribedEvents()
     {
-        return [Events::prePersist, Events::preUpdate];
+        return [
+            Events::prePersist,
+            Events::preUpdate
+        ];
     }
 
     public function prePersist(LifecycleEventArgs $args)

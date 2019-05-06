@@ -190,9 +190,9 @@ nav {
     border-radius: 0 !important;
 }
 
-/* input#registration_avatar.custom-file-input:disabled {
-    pointer-events: none;
-} */
+.error-authentification, .forgot-pwd {
+    color:  #E08D34;
+}
 
 .custom-file-label::after{
     content: "Parcourir" !important;
@@ -249,6 +249,10 @@ nav {
     #load-medias {
         display: inline-block;
         text-align: center;
+    }
+
+    .img-header {
+        height: 200px !important;
     }
 
 }
