@@ -2,15 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Service\Events;
+use App\Mailer\MailerNotify;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
@@ -19,7 +16,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/forgotPassword", name="forgot_password")
      */
-    public function forgotPassword(Request $request, UserRepository $repo, TokenGeneratorInterface $tokenGenerator, ObjectManager $manager, EventDispatcherInterface $eventDispatcher)
+    public function forgotPassword(Request $request, UserRepository $repo, TokenGeneratorInterface $tokenGenerator, ObjectManager $manager, MailerNotify $mailerNotify)
     {
         if ($request->isMethod('post')) {
             $email = $request->get('email');
@@ -29,10 +26,12 @@ class AccountController extends AbstractController
                 $token = $tokenGenerator->generateToken();
                 $user->setResetPassword($token);
                 $manager->flush();
+
                 $url = $this->generateUrl('reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
-                // Envoyer un email de bienvenue à l'utilisateur
-                $event = new GenericEvent($user, ['url' => $url]);
-                $eventDispatcher->dispatch(Events::FORGOT_PASSWORD, $event);
+
+                // Envoyer un email  à l'utilisateur pour réinitialiser son mot de passe
+                $mailerNotify->mailer($user, 'Réinitialisation du mot de passe', 'emails/forgot.html.twig', $url);
+
 
                 return $this->redirectToRoute('tricks');
             } else {
@@ -58,7 +57,7 @@ class AccountController extends AbstractController
             }
             $user->setResetPassword(null);
             $user->setPlainPassword($resetPassword);
-            $user->setPassword($request->get('password'));
+            $user->setPassword($resetPassword);
             $manager->flush();
             return $this->redirectToRoute('tricks');
         }
