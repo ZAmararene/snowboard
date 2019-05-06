@@ -32,6 +32,7 @@ class TricksController extends AbstractController
     {
         return $this->render('tricks/page.html.twig', [
             'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, ($page - 1) * 12),
+
         ]);
     }
 
@@ -69,6 +70,7 @@ class TricksController extends AbstractController
     {
         return $this->render('tricks/commentPage.html.twig', [
             'comments' => $commentRepo->findBy(['trick' => $trickId], ['id' => 'DESC'], 10, ($page - 1) * 10),
+
         ]);
     }
 }
