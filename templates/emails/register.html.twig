@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1; maximum-scale=1.0;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-    <title><?= $title; ?></title>
+    <title>Snowboard</title>
     <style type="text/css">
     </style>
 	</head>
@@ -30,13 +30,13 @@
                     <p>
                         Retrouvons nous sur le
                         <strong>
-                            <a href="http://localhost:8888/openclassrooms/projet6/snowboard/public/index.php" target="_blank" style="color:#E08D34; text-decoration:none">blog</a>
+                            <a href="{{ absolute_url(path('tricks')) }}" target="_blank" style="color:#E08D34; text-decoration:none">blog</a>
                         </strong>
                     </p>
                     <p>
                         Pour vous connecter
                         <strong>
-                            <a href="http://localhost:8888/openclassrooms/projet6/snowboard/templates/security/login.html.twig" target="_blank" style="color:#E08D34; text-decoration:none">Cliquez ici</a>
+                            <a href="{{ absolute_url(path('security_login')) }}" target="_blank" style="color:#E08D34; text-decoration:none">cliquez ici</a>
                         </strong>
                     </p>
                 </div>
@@ -45,6 +45,6 @@
         </table>
     </body>
     <footer>
-    <img src="http://localhost:8888/openclassrooms/projet6/snowboard/public/images/bg11.jpg" alt="Neige">
+        <img src="{{ absolute_url(asset('images/bg11.jpg')) }}" alt="Neige">
     </footer>
 </html>

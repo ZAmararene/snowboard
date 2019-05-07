@@ -6,7 +6,6 @@
 parameters:
     locale: 'en'
     upload_directory: '%kernel.project_dir%/public/uploads/avatars'
-    email.sender: zina.amararene@gmail.com
 
 services:
     # default configuration for services in *this* file
@@ -30,12 +29,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\EventSubscriber\RegistrationNotifySubscriber:
-        arguments:
-            $twig: '@twig'
-            $email: '@mailer'
-            $sender: '%email.sender%'
-
     App\Service\PictureUploader:
         arguments:
             $targetDirectory: '%upload_directory%'
@@ -47,4 +40,4 @@ services:
 
     App\EventSubscriber\HashPasswordSubscriber:
         tags:
-            - { name: doctrine.event_subscriber }
+            - { name: doctrine.event_subscriber, connection: default }
