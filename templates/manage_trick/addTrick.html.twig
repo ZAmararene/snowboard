@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter uen figure{% endblock %}
+
+{% block header %}
+    <img src="{{ asset('images/bg17.jpg') }}" class="img-manage-trick img-fluid" alt="image neige">
+{% endblock %}
+
+{% block body %}
+    <h2 class="mt-4 mb-3">Ajouter une figure</h2>
+    <ol class="breadcrumb rounded-0">
+        <li class="breadcrumb-item">
+            <a href="{{ path('tricks') }}">Accueil</a>
+        </li>
+        <li class="breadcrumb-item active">Figure</li>
+    </ol>
+
+    <section id="add-trick">
+        <div class="row my-5">
+            <div class="col-lg-8 offset-lg-2">
+                {{ form_start(form) }}
+                    {{ form_row(form.name, {'attr' : {'class' : 'rounded-0'}}) }}
+                    {{ form_row(form.content) }}
+                    {{ form_row(form.groupe, {'attr': {'class' : 'rounded-0'}}) }}
+                    <div class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                        {% for picture in form.pictures %}
+                            {# <div>{{ form_row(picture.name) }}</div> #}
+                        {% endfor %}
+                    </div>
+
+                    <div class="videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
+                        {% for video in form.videos %}
+                            {# <div>{{ form_row(video.name) }}</div> #}
+                        {% endfor %}
+                    </div>
+
+                    {# <div class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}"> </div> #}
+                    {# <div class="videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}"></div> #}
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success btn-add-trick rounded-0 font-weight-bold">Ajouter la figure</button>
+                    </div>
+                {{ form_end(form, {'render_rest': false}) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}

@@ -70,6 +70,7 @@ class Trick
         $this->pictures = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->setDateAdded(new \DateTime());
     }
 
     public function getId()

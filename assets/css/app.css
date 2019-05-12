@@ -5,6 +5,7 @@ body {
 /******************************
 /* Home page
 ********************************/
+
 .carousel-item {
     height: 65vh;
     min-height: 700px;
@@ -96,6 +97,7 @@ nav {
 /******************************
 /* Trick detail
 ********************************/
+
 #img-trick-detail img { /* image du header du détail du trick*/
     height: 350px;
 }
@@ -124,7 +126,7 @@ nav {
     width: 50%;
 }
 
-#leave-comment textarea.form-control {
+#leave-comment textarea.form-control, #add-trick #add_trick_content {
     height: 200px !important;
 }
 
@@ -167,11 +169,12 @@ nav {
 /******************************
 /* Registration, connection
 ********************************/
+
 #registration .form-error-icon {
     display: none;
 }
 
-#registration button, #connection button {
+#registration button, #connection button, #add-trick button.btn-add-trick {
     background-color: #E08D34;
     border: 1px solid #E08D34;
     color: #000;
@@ -204,7 +207,37 @@ nav {
     display: none;
 }
 
+/******************************
+/* Add, update and delete trick
+********************************/
+
+.btn-delete-img {
+    background-color:#E9ECEF !important;
+    color:  #E08D34 !important;
+    border: 1px solid #ced4da !important;
+}
+
+#add-trick .d-flex-img {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#add-trick .delete-img {
+    width: 10% !important;
+}
+
+#add-trick .delete-img  button{
+    margin-top: 32px;
+}
+
+/* #add-trick legend{
+    display: none;
+} */
+
+/*****************************************************
 /*Small devices (landscape phones, less than 768px)*/
+/*****************************************************/
+
 @media (max-width: 767.98px) {
     nav ul li a.nav-link:hover, nav ul li a.nav-link:active{
         border-bottom: 0;
@@ -256,7 +289,11 @@ nav {
     }
 
 }
+
+/*****************************************************
 /* Medium devices (tablets, 768px and up)*/
+/*****************************************************/
+
 @media (min-width: 768px) and (max-width: 991.98px) {
     nav {
         padding-top: 1.2rem !important;
