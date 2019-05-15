@@ -18,29 +18,41 @@ class PictureUploadListener
 
     public function prePersist(LifecycleEventArgs $args)
     {
-        $entity = $args->getEntity();
-        $this->uploadFile($entity);
-    }
+        $picture = $args->getEntity();
 
-    public function preUpdate(PreUpdateEventArgs $args)
-    {
-        $entity = $args->getEntity();
-        $this->uploadFile($entity);
-    }
-
-    public function uploadFile($entity)
-    {
-        if (!$entity instanceof Picture) {
+        if (!$picture instanceof Picture) {
             return;
         }
 
-        $file = $entity->getName();
+        $file = $picture->getName();
 
         // only upload new file
         if (!$file instanceof UploadedFile) {
             return;
         }
+
+        $this->uploadFile($file);
+    }
+
+    // public function preUpdate(PreUpdateEventArgs $args)
+    // {
+    //     $entity = $args->getEntity();
+    //     $this->uploadFile($entity);
+    // }
+
+    public function uploadFile($file)
+    {
+        // if (!$picture instanceof Picture) {
+        //     return;
+        // }
+
+        // $file = $picture->getName();
+
+        // // only upload new file
+        // if (!$file instanceof UploadedFile) {
+        //     return;
+        // }
         $fileName = $this->uploader->uploadPicture($file);
-        $entity->setName($fileName);
+        $file->setName($fileName);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,11 +21,21 @@ class Trick
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Le contenu ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 3,
+     *     minMessage = "Le contenu doit avoir au minimum 3 caractères"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message = "Le contenu ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 10,
+     *     minMessage = "Le contenu doit être supérieur à 10 caractères"
+     * )
      */
     private $content;
 
@@ -34,9 +45,9 @@ class Trick
     private $dateAdded;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateModification;
+    private $dateModification = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tricks")
@@ -51,12 +62,12 @@ class Trick
     private $groupe;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="trick")
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="trick", cascade={"persist"})
      */
     private $pictures;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="trick")
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="trick", cascade={"persist"})
      */
     private $videos;
 

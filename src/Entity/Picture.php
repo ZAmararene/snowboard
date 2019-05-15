@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
@@ -17,17 +18,25 @@ class Picture
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Image(
+     *     maxWidth = 400,
+     *     maxWidthMessage = "La largeur de l'image doit être inférieur à 400px",
+     *     maxHeight = 200,
+     *     maxHeightMessage = "La hauteur de l'image doit être inférieur à 200px",
+     *     maxSize = "1024K",
+     *     mimeTypesMessage = "Télécharger une image avatar valide"
+     * )
      */
     private $name;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", nullable=true)
      */
     private $imageSize;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $imageType;
 

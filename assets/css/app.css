@@ -118,8 +118,8 @@ nav {
     color: #CB442E;
 }
 
-#leave-comment input.form-control, textarea.form-control, #registration input.form-control {
-    border-radius: 0;
+#leave-comment input.form-control, textarea.form-control, #registration input.form-control, .form-control {
+    border-radius: 0 !important;
 }
 
 #leave-comment input.form-control {
@@ -189,7 +189,7 @@ nav {
     color: #22234A;
 }
 
-.custom-file-label, input#registration_avatar.custom-file-input {
+.custom-file-label, input#registration_avatar.custom-file-input{
     border-radius: 0 !important;
 }
 
@@ -202,6 +202,7 @@ nav {
     border-radius: 0;
     color:  #E08D34 !important;
 }
+
 
 #load-medias {
     display: none;
@@ -217,10 +218,28 @@ nav {
     border: 1px solid #ced4da !important;
 }
 
-#add-trick .d-flex-img {
+.add_trick_videos_ {
+    background-color: #E08D34;
+}
+/* select#add_trick_groupe.form-control + option{
+    border-radius: 0;
+     background-color: #E08D34;
+} */
+/* #add-trick .d-flex-img {
     display: flex;
     flex-wrap: nowrap;
-}
+} */
+
+/* #add-trick .video-link .form-group {
+    width: 80% !important;
+} */
+
+/* #add-trick .add_trick_videos_ {
+     width: 400px !important;
+} */
+/* #add-trick .add-video, #add-trick .add-picture{
+    margin-left: 10px !important;
+} */
 
 #add-trick .delete-img {
     width: 10% !important;
@@ -230,9 +249,13 @@ nav {
     margin-top: 32px;
 }
 
-/* #add-trick legend{
+#add-trick .connect {
+    background-color: rgba(18,84,155,.3);
+}
+
+#add-trick legend{
     display: none;
-} */
+}
 
 /*****************************************************
 /*Small devices (landscape phones, less than 768px)*/

@@ -31,7 +31,7 @@ $(document).on('change', '.custom-file-input', function () {
 var $collectionHolder;
 
 // setup an "add a picture" link
-var $addPictureButton = $('<button type="button" class="add_picture_link btn btn-primary rounded-0 my-2">Ajouter une image</button>');
+var $addPictureButton = $('<button type="button" class="add_picture_link btn btn-primary rounded-0 my-2 ml-4">Ajouter une image</button>');
 var $newLinkLi = $('<div></div>').append($addPictureButton);
 
 jQuery(document).ready(function () {
@@ -49,7 +49,6 @@ jQuery(document).ready(function () {
         // add a new tag form (see next code block)
         addForm($collectionHolder, $newLinkLi);
     });
-    // });
 
     function addForm($collectionHolder, $newLinkLi) {
         // Get the data-prototype explained earlier
@@ -68,7 +67,7 @@ jQuery(document).ready(function () {
         $collectionHolder.data('index', index + 1);
 
         // Display the form in the page in an div, before the "Add a tag" div
-        var $newFormLi = $('<div class="d-flex-img"></div>').append(newForm);
+        var $newFormLi = $('<div class="row ml-3"></div>').append(newForm);
         $newLinkLi.before($newFormLi);
 
         addPictureFormDeleteLink($newFormLi);
@@ -90,7 +89,7 @@ jQuery(document).ready(function () {
 var $collection;
 
 // setup an "add a picture" link
-var $addVideoButton = $('<button type="button" class="add_picture_link btn btn-primary rounded-0 my-2">Ajouter une video</button>');
+var $addVideoButton = $('<button type="button" class="add_picture_link btn btn-primary rounded-0 my-2 ml-4">Ajouter une video</button>');
 var $newLink = $('<div></div>').append($addVideoButton);
 
 jQuery(document).ready(function () {
@@ -126,7 +125,7 @@ jQuery(document).ready(function () {
         $collection.data('index', index + 1);
 
         // Display the form in the page in an div, before the "Add a tag" div
-        var $newForm = $('<div class="d-flex-img"></div>').append(newForm);
+        var $newForm = $('<div class="row ml-3"></div>').append(newForm);
         $newLink.before($newForm);
 
         addVideoFormDeleteLink($newForm);
