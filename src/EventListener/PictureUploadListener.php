@@ -34,24 +34,8 @@ class PictureUploadListener
         $this->uploadFile($file);
     }
 
-    // public function preUpdate(PreUpdateEventArgs $args)
-    // {
-    //     $entity = $args->getEntity();
-    //     $this->uploadFile($entity);
-    // }
-
     public function uploadFile($file)
     {
-        // if (!$picture instanceof Picture) {
-        //     return;
-        // }
-
-        // $file = $picture->getName();
-
-        // // only upload new file
-        // if (!$file instanceof UploadedFile) {
-        //     return;
-        // }
         $fileName = $this->uploader->uploadPicture($file);
         $file->setName($fileName);
     }

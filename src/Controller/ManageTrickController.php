@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-
-use App\Entity\User;
 use App\Entity\Trick;
 use App\Form\AddTrickType;
 use Symfony\Component\HttpFoundation\Request;
