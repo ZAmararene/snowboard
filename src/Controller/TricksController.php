@@ -38,13 +38,12 @@ class TricksController extends AbstractController
     /**
      * @Route("/trick/{id}", name="trick_show")
      */
-    public function showTrick(TrickRepository $repoTrick, Trick $trick, Request $request, ObjectManager $manager, CommentRepository $commentRepo, int $id)
+    public function showTrick(Trick $trick, Request $request, ObjectManager $manager, CommentRepository $commentRepo, int $id)
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setDateAdded(new \DateTime());
             $comment->setTrick($trick);
             $user = $this->getUser();
             $comment->setPseudo($user->getPseudo());

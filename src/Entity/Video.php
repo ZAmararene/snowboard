@@ -19,28 +19,20 @@ class Video
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Assert\Url
      */
     private $name;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
-     */
-    private $videoSize;
-
-    /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $videoType;
-
-    /**
-     * @ORM\Column(type="string", length=100)
+     * @Assert\Url(
+     *     message="Veuillez saisir une URL valide"
+     * )
      */
     private $videoLink;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Trick", inversedBy="videos")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $trick;
 
@@ -52,16 +44,6 @@ class Video
     public function getName()
     {
         return $this->name;
-    }
-
-    public function getVideoSize()
-    {
-        return $this->videoSize;
-    }
-
-    public function getVideoType()
-    {
-        return $this->videoType;
     }
 
     public function getVideoLink()
@@ -79,18 +61,10 @@ class Video
         $this->name = $name;
     }
 
-    public function setVideoSize($videoSize)
-    {
-        $this->videoSize = $videoSize;
-    }
-
-    public function setVideoType($videoType)
-    {
-        $this->videoType = $videoType;
-    }
-
     public function setVideoLink($videoLink)
     {
+        $videoLink = str_replace("watch?v=", "embed/", $videoLink);
+        $videoLink = str_replace("vimeo.com", "player.vimeo.com/video", $videoLink);
         $this->videoLink = $videoLink;
     }
 

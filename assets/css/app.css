@@ -94,16 +94,17 @@ nav {
     padding-bottom: 1.5rem !important;
 }
 
+#tricks .card img {
+    width: 100%;
+    height: 200px;
+}
+
 /******************************
 /* Trick detail
 ********************************/
 
 #img-trick-detail img { /* image du header du détail du trick*/
     height: 350px;
-}
-
-.card-title {
-    margin-top: 200px;
 }
 
 .separator{
@@ -152,7 +153,7 @@ nav {
 }
 
 .card-img-overlay .edit-delete {
-    margin-top: 70px;
+    margin-top: 250px;
     background-color: #E08D34;
 }
 
@@ -163,6 +164,10 @@ nav {
 
 .card-img-overlay .edit-delete a:hover{
     color: #FFF;
+}
+
+#show-trick img{
+    height: 190px;
 }
 
 
@@ -212,49 +217,27 @@ nav {
 /* Add, update and delete trick
 ********************************/
 
-.btn-delete-img {
+.btn-remove {
     background-color:#E9ECEF !important;
     color:  #E08D34 !important;
     border: 1px solid #ced4da !important;
-}
-
-.add_trick_videos_ {
-    background-color: #E08D34;
-}
-/* select#add_trick_groupe.form-control + option{
-    border-radius: 0;
-     background-color: #E08D34;
-} */
-/* #add-trick .d-flex-img {
-    display: flex;
-    flex-wrap: nowrap;
-} */
-
-/* #add-trick .video-link .form-group {
-    width: 80% !important;
-} */
-
-/* #add-trick .add_trick_videos_ {
-     width: 400px !important;
-} */
-/* #add-trick .add-video, #add-trick .add-picture{
-    margin-left: 10px !important;
-} */
-
-#add-trick .delete-img {
-    width: 10% !important;
-}
-
-#add-trick .delete-img  button{
-    margin-top: 32px;
 }
 
 #add-trick .connect {
     background-color: rgba(18,84,155,.3);
 }
 
-#add-trick legend{
+#add-trick .form-group label{
+    font-weight: 700;
+}
+
+#add-trick .form-error-icon {
     display: none;
+}
+
+#add-trick .form-error-message {
+    color:  #E08D34;
+    font-weight: 700;
 }
 
 /*****************************************************
@@ -311,6 +294,13 @@ nav {
         height: 200px !important;
     }
 
+    #img-trick-detail img { /* image du header du détail du trick*/
+        height: 250px;
+    }
+
+    .card-img-overlay .edit-delete {
+        margin-top: 150px;
+    }
 }
 
 /*****************************************************

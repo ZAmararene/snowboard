@@ -39,7 +39,7 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Trick", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $trick;
 
@@ -47,6 +47,11 @@ class Comment
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      */
     private $user;
+
+    public function __construct()
+    {
+        $this->setDateAdded(new \DateTime());
+    }
 
     public function getId()
     {

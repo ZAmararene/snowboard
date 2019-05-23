@@ -75,9 +75,7 @@ class TricksFixtures extends Fixture
 
                         $picture = new Picture();
 
-                        $picture->setName($faker->sentence());
-                        $picture->setImageSize(mt_rand(10000, 20000));
-                        $picture->setImageType($faker->imageUrl(350, 200, 'sports'));
+                        $picture->setName($faker->imageUrl(350, 200, 'sports'));
                         $picture->setTrick($trick);
 
                         $manager->persist($picture);
@@ -85,8 +83,6 @@ class TricksFixtures extends Fixture
                         $video = new Video();
 
                         $video->setName($faker->sentence());
-                        $video->setVideoSize(mt_rand(10000, 20000));
-                        $video->setVideoType('avi');
                         $video->setVideoLink($faker->imageUrl(350, 200, 'sports'));
                         $video->setTrick($trick);
 

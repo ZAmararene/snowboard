@@ -59,10 +59,13 @@
         {% for trick in tricks %}
           <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
             <div class="trick card h-100 rounded-0">
+                {% if trick.pictures is empty %}
+                  <img src="{{ asset('images/default-snowboard.jpg') }}" class="img-fluid" alt="Image trick">
+                {% endif %}
                 {% for picture in trick.pictures %}
                   <div class="card-img-top">
                     {% if loop.first %}
-                      <img src="{{ picture.imageType }}" class="img-fluid" alt="Image trick">
+                      <img src="{{ asset('uploads/pictures/') ~ picture.name }}" class="img-fluid" alt="Image trick">
                     {% endif %}
                   </div>
                 {% endfor %}

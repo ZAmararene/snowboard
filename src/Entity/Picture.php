@@ -20,29 +20,19 @@ class Picture
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\Image(
-     *     maxWidth = 400,
-     *     maxWidthMessage = "La largeur de l'image doit être inférieur à 400px",
-     *     maxHeight = 200,
-     *     maxHeightMessage = "La hauteur de l'image doit être inférieur à 200px",
-     *     maxSize = "1024K",
-     *     mimeTypesMessage = "Télécharger une image avatar valide"
+     *     maxWidth = 2000,
+     *     maxWidthMessage = "La largeur de l'image doit être inférieur à 2000px",
+     *     maxHeight = 1000,
+     *     maxHeightMessage = "La hauteur de l'image doit être inférieur à 1000px",
+     *     maxSize = "2024K",
+     *     mimeTypesMessage = "Télécharger une image valide"
      * )
      */
     private $name;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
-     */
-    private $imageSize;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $imageType;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Trick", inversedBy="pictures")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $trick;
 
@@ -56,16 +46,6 @@ class Picture
         return $this->name;
     }
 
-    public function getImageSize()
-    {
-        return $this->imageSize;
-    }
-
-    public function getImageType()
-    {
-        return $this->imageType;
-    }
-
     public function setId($id)
     {
         $this->id = $id;
@@ -74,16 +54,6 @@ class Picture
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    public function setImageSize($imageSize)
-    {
-        $this->imageSize = $imageSize;
-    }
-
-    public function setImageType($imageType)
-    {
-        $this->imageType = $imageType;
     }
 
     public function getTrick(): ?Trick
