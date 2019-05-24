@@ -5,7 +5,7 @@ namespace App\EventListener;
 use App\Entity\Picture;
 use App\Service\PictureUploader;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PictureUploadListener
 {
@@ -18,29 +18,19 @@ class PictureUploadListener
 
     public function prePersist(LifecycleEventArgs $args)
     {
-        $entity = $args->getEntity();
-        $this->uploadFile($entity);
-    }
+        $picture = $args->getEntity();
 
-    public function preUpdate(PreUpdateEventArgs $args)
-    {
-        $entity = $args->getEntity();
-        $this->uploadFile($entity);
-    }
-
-    public function uploadFile($entity)
-    {
-        if (!$entity instanceof Picture) {
+        if (!$picture instanceof Picture) {
             return;
         }
 
-        $file = $entity->getName();
-
+        $file = $picture->getName();
         // only upload new file
         if (!$file instanceof UploadedFile) {
             return;
         }
+
         $fileName = $this->uploader->uploadPicture($file);
-        $entity->setName($fileName);
+        $picture->setName($fileName);
     }
 }
