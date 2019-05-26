@@ -23,7 +23,8 @@ class AddTrickType extends AbstractType
                 'label' => 'Nom'
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Description'
+                'label' => 'Description',
+                'attr' => ['class' => 'ckeditor']
             ])
             ->add('groupe', EntityType::class, [
                 'class' => GroupTrick::class,

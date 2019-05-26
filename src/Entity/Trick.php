@@ -126,12 +126,12 @@ class Trick
         $this->content = $content;
     }
 
-    public function setDateAdded(\dateTime $dateAddded)
+    public function setDateAdded(\DateTime $dateAddded)
     {
         $this->dateAdded = $dateAddded;
     }
 
-    public function setDateModification($dateModification)
+    public function setDateModification(\DateTime $dateModification)
     {
         $this->dateModification = $dateModification;
     }
