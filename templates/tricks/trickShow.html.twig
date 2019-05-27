@@ -6,8 +6,23 @@
 
 {% block header %}
     {% if trick.pictures is empty %}
-        <img src="{{ asset('images/bg7.jpg') }}" class=" img-fluid x-100" alt="image neige">
+        <div class="card text-white rounded-0" id="img-trick-detail">
+            <img src="{{ asset('images/bg7.jpg') }}" class=" img-fluid x-100" alt="image neige">
+            <div class="card-img-overlay">
+                {% if app.user %}
+                    <div class="edit-delete float-right p-2 mr-5">
+                        <a href="{{ path('update_trick', {'id' : trick.id}) }}" class="pr-3 text-decoration-none">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="text-decoration-none" href="">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     {% endif %}
+
     {% for picture in trick.pictures %}
         {% if loop.first %}
             <div class="card text-white rounded-0" id="img-trick-detail">
@@ -16,11 +31,9 @@
                     {% if app.user %}
                         <div class="edit-delete float-right p-2 mr-5">
                             <a href="{{ path('update_trick', {'id' : picture.trick.id}) }}" class="pr-3 text-decoration-none">
-
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a class="text-decoration-none" href="">
-
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                         </div>

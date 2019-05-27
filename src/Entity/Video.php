@@ -24,7 +24,8 @@ class Video
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Assert\Url(
+     * @Assert\Regex(
+     * pattern = "/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/",
      *     message="Veuillez saisir une URL valide"
      * )
      */
@@ -64,6 +65,7 @@ class Video
     public function setVideoLink($videoLink)
     {
         $videoLink = str_replace("watch?v=", "embed/", $videoLink);
+        $videoLink = str_replace("youtu.be", "www.youtube.com/embed", $videoLink);
         $videoLink = str_replace("vimeo.com", "player.vimeo.com/video", $videoLink);
         $this->videoLink = $videoLink;
     }
