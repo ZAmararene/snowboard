@@ -1,5 +1,4 @@
 body {
-    font-family: 'Lora', serif;
     padding-top: 56px;
 }
 /******************************
@@ -103,6 +102,19 @@ nav {
 /* Trick detail
 ********************************/
 
+div.trumbowyg-box, div.trumbowyg-editor, .trumbowyg-textarea {
+    min-height: 200px !important;
+    word-wrap: break-word;
+}
+
+#trick .show-trick, #comments .media-body{
+    overflow: hidden;
+}
+
+#trick .trick-content, #comments .comment-content {
+    word-wrap: break-word;
+}
+
 #img-trick-detail img { /* image du header du détail du trick*/
     height: 350px;
 }
@@ -127,11 +139,7 @@ nav {
     width: 50%;
 }
 
-#leave-comment textarea.form-control, #add-trick #add_trick_content {
-    height: 200px !important;
-}
-
-#leave-comment button {
+#leave-comment button[type="submit"] {
     background-color: #E08D34;
     border: 1px solid #E08D34;
 }
@@ -170,7 +178,6 @@ nav {
     height: 190px;
 }
 
-
 /******************************
 /* Registration, connection
 ********************************/
@@ -207,7 +214,6 @@ nav {
     border-radius: 0;
     color:  #E08D34 !important;
 }
-
 
 #load-medias {
     display: none;

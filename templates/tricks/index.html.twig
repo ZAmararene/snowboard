@@ -30,7 +30,6 @@
                 <div class="carousel-item" style="background-image: url('{{ asset('images/bg4.jpg') }}')">
                     <div class="carousel-caption d-md-block">
                         <h2 class="py-3">La réussite est l'aboutissement d'une succession d'echecs</h2>
-                        {# <p>This is a description for the third slide.</p> #}
                     </div>
                 </div>
             </div>
@@ -80,12 +79,9 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-4 text-right">
                                     <a href="{{ path('update_trick', {'id' : trick.id}) }}" class="pr-3 text-decoration-none">
-
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a class="text-decoration-none" href="">
-
-
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </div>
@@ -116,7 +112,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('home') }}
+
     <script>
         var page = 1;
         var totalTricks = {{ totalTricks }}

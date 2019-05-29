@@ -67,6 +67,7 @@ class Video
         $videoLink = str_replace("watch?v=", "embed/", $videoLink);
         $videoLink = str_replace("youtu.be", "www.youtube.com/embed", $videoLink);
         $videoLink = str_replace("vimeo.com", "player.vimeo.com/video", $videoLink);
+        $videoLink = str_replace("dailymotion.com", "dailymotion.com/embed", $videoLink);
         $this->videoLink = $videoLink;
     }
 

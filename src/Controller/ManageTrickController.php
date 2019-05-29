@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Form\AddTrickType;
-use App\Repository\TrickRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +14,7 @@ class ManageTrickController extends AbstractController
     /**
      * @Route("/manage/trick", name="add_trick")
      */
-    public function addTrick(Request $request, ObjectManager $manager, TrickRepository $repo)
+    public function addTrick(Request $request, ObjectManager $manager)
     {
         $trick = new Trick();
 
@@ -33,6 +32,7 @@ class ManageTrickController extends AbstractController
 
         return $this->render('manage_trick/addTrick.html.twig', [
             'form' => $form->createView(),
+            'task' => 'addTrick'
         ]);
     }
 
@@ -54,6 +54,8 @@ class ManageTrickController extends AbstractController
 
         return $this->render('manage_trick/addTrick.html.twig', [
             'form' => $form->createView(),
+            'trick' => $trick,
+            'task' => 'editTrick'
         ]);
     }
 }

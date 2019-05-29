@@ -1,18 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter uen figure{% endblock %}
+{% if task == 'addTrick'  %}
+    {% set task = 'Ajouter une figure' %}
+{% else %}
+    {% if  task == 'editTrick'  %}
+        {% set task = 'Modifier la figure' %}
+    {% endif %}
+{% endif %}
+
+{% block title %}{{ task }}{% endblock %}
 
 {% block header %}
     <img src="{{ asset('images/bg17.jpg') }}" class="img-manage-trick img-fluid" alt="image neige">
 {% endblock %}
 
 {% block body %}
-    <h2 class="mt-4 mb-3">Ajouter une figure</h2>
+    <h2 class="mt-4 mb-3">{{task}}</h2>
     <ol class="breadcrumb rounded-0">
         <li class="breadcrumb-item">
             <a href="{{ path('tricks') }}">Accueil</a>
         </li>
-        <li class="breadcrumb-item active">Figure</li>
+        {% if trick is defined %}
+            <li class="breadcrumb-item">
+            <a href="{{ path('trick_show', {'id' : trick.id}) }}">Détail de la figure</a>
+            </li>
+        {% endif %}
+        <li class="breadcrumb-item active">{{ task }}</li>
     </ol>
     {% for message in app.flashes('notice') %}
         <div class="alert alert-warning alert-dismissible fade show w-100 col-sm-12 col-md-6 offset-md-3 rounded-0" role="alert">
@@ -63,8 +76,4 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('home') }}
-    {# <script>
-    ClassicEditor.create( document.querySelector( '#add_trick_content' ) )
-    </script> #}
 {% endblock %}

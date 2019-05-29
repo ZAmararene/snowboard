@@ -73,11 +73,13 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="mx-auto col-sm-12" id="load-medias">
-            <button class="btn btn-primary rounded-0" type="button">Voir les médias</button>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 text-justify py-3">
+        {% if trick.pictures|length > 0 or trick.pictures|length > 0 %}
+            <div class="mx-auto col-sm-12" id="load-medias">
+                <button class="btn btn-primary rounded-0" type="button">Voir les médias</button>
+            </div>
+        {% endif %}
+        <div class="row show-trick">
+            <div class="trick-content col-lg-12 col-md-12 col-sm-12 text-justify py-3">
                 {{ trick.content | raw }}
             </div>
         </div>
@@ -140,8 +142,9 @@
                                         <h5 class="mt-0 d-inline-block pseudo">{{ comment.pseudo }}</h5>
                                         |
                                         <span class="font-italic text-muted">
-                                            {{ comment.dateAdded|date("d/m/Y")}}</span>
-                                        <div class="text-justify pl-4">
+                                            {{ comment.dateAdded|date("d/m/Y")}}
+                                        </span>
+                                        <div class="comment-content text-justify pl-4">
                                             {{ comment.content | raw }}
                                         </div>
                                     </div>
@@ -167,6 +170,7 @@
         {% endblock %}
 
         {% block javascripts %}
+            {{ parent() }}
             <script>
                 var page = 1;
                 var totalComments = {{ totalComments }}
