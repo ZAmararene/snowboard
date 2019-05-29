@@ -78,10 +78,10 @@
                                     <a href="{{ path('trick_show', {'id' : trick.id}) }}" class="text-uppercase text-dark">{{ trick.name }}</a>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-4 text-right">
-                                    <a href="{{ path('update_trick', {'id' : trick.id}) }}" class="pr-3 text-decoration-none">
+                                    <a href="{{ path('update_trick', {'id' : trick.id}) }}" class="text-decoration-none">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a class="text-decoration-none" href="">
+                                    <a href="{{ path('delete_trick', {'id' : trick.id}) }}" class="text-decoration-none">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </div>

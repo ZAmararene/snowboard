@@ -58,4 +58,14 @@ class ManageTrickController extends AbstractController
             'task' => 'editTrick'
         ]);
     }
+
+    /**
+     * @Route("/manage/delete/{id}", name="delete_trick")
+     */
+    public function deleteTrick(ObjectManager $manager, Trick $trick)
+    {
+        $manager->remove($trick);
+        $manager->flush();
+        return $this->redirectToRoute('tricks');
+    }
 }
