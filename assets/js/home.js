@@ -1,3 +1,15 @@
+/******************************
+ * Icônes SVG trumbowyg
+ *****************************/
+
+$.trumbowyg.svgPath = '/icons.svg';
+
+$('#add_trick_content').trumbowyg();
+$('#comment_content').trumbowyg();
+
+/*******************************
+ * Carousel
+ *******************************/
 
 $(document).ready(function () {
 
@@ -16,18 +28,19 @@ $(document).ready(function () {
     });
 });
 
-/********************************************** */
-//Correction du bug lié au téléchargement de fichier de bootstrap 4, le fichier ou image téléchargé n'apparait pas
-/********************************************** */
+/*********************************************************************/
+// Correction du bug lié au téléchargement de fichier de bootstrap 4,
+// le fichier ou image téléchargé n'apparait pas
+/************************************************************************/
 
 $(document).on('change', '.custom-file-input', function () {
     let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
     $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
 });
 
-/********************************************** */
+/***************************************************************** */
 // Gestion des Collection of Forms pour l'ajout de trick (figure)
-/********************************************** */
+/*********************************************************************/
 
 $(".btn-add").on("click", function () {
     var $collectionHolder = $($(this).data("rel"));

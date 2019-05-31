@@ -33,4 +33,22 @@ class PictureUploadListener
         $fileName = $this->uploader->uploadPicture($file);
         $picture->setName($fileName);
     }
+
+    public function preUpdate(LifecycleEventArgs $args)
+    {
+        $picture = $args->getEntity();
+
+        if (!$picture instanceof Picture) {
+            return;
+        }
+
+        $file = $picture->getName();
+        // only upload new file
+        if (!$file instanceof UploadedFile) {
+            return;
+        }
+
+        $fileName = $this->uploader->uploadPicture($file);
+        $picture->setName($fileName);
+    }
 }
