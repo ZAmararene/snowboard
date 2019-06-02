@@ -17,7 +17,7 @@
         <!-- Navigation -->
         <nav class="navbar fixed-top navbar-expand-lg fixed-top">
             <div class="container">
-                <a class="navbar-brand text-white" href="index.html">
+                <a href="{{ path('tricks') }}" class="navbar-brand text-white">
                     <img src="{{ asset('images/logo.png') }}" class="d-inline-block align-bottom" alt="logo">
                     Snowboard
                 </a>
@@ -57,13 +57,16 @@
                                 <a class="font-weight-bold" href="{{ path('tricks') }}"><span class="sr-only">(current)</span>Accueil</a>
                             </div>
                             <div class="menu py-3">
-                                <a class="font-weight-bold" href="">Tricks</a>
+                                <a href="{{ path('add_trick') }}" class="font-weight-bold">Trick</a>
+                            </div>
+                            <div class="menu py-3">
+                                <a href="{{ path('security_registration') }}" class="font-weight-bold">Inscription</a>
                             </div>
                             <div class="menu py-3 mb-4">
                                 {% if not app.user %}
-                                    <a href="" class="font-weight-bold">Connexion</a>
+                                    <a href="{{ path('security_login') }}" class="font-weight-bold">Connexion</a>
                                 {% else %}
-                                    <a href="" class="font-weight-bold">déconnexion</a>
+                                    <a href="{{ path('security_logout') }}" class="font-weight-bold">déconnexion</a>
                                 {% endif %}
                             </div>
                         </div>
