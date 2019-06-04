@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
-use App\Form\AddTrickType;
+use App\Service\AddTrickHandler;
+use App\Service\DeleteTrickHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,24 +15,16 @@ class ManageTrickController extends AbstractController
     /**
      * @Route("/manage/trick", name="add_trick")
      */
-    public function addTrick(Request $request, ObjectManager $manager)
+    public function addTrick(Request $request, AddTrickHandler $addTrickHandler)
     {
         $trick = new Trick();
 
-        $form = $this->createForm(AddTrickType::class, $trick);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $trick->setUser($this->getUser());
-
-            $manager->persist($trick);
-            $manager->flush();
-
+        if ($addTrickHandler->handle($trick, $request)) {
             return $this->redirectToRoute('tricks');
         }
 
         return $this->render('manage_trick/addTrick.html.twig', [
-            'form' => $form->createView(),
+            'form' => $addTrickHandler->getForm()->createView(),
             'task' => 'addTrick'
         ]);
     }
@@ -39,21 +32,14 @@ class ManageTrickController extends AbstractController
     /**
      * @Route("/manage/update/{id}", name="update_trick")
      */
-    public function updateTrick(Request $request, ObjectManager $manager, Trick $trick)
+    public function updateTrick(Request $request, Trick $trick, DeleteTrickHandler $deleteTrickHandler)
     {
-        $form = $this->createForm(AddTrickType::class, $trick);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $trick->setDateModification(new \DateTime());
-
-            $manager->flush();
-
+        if ($deleteTrickHandler->handle($trick, $request)) {
             return $this->redirectToRoute('tricks');
         }
 
         return $this->render('manage_trick/addTrick.html.twig', [
-            'form' => $form->createView(),
+            'form' => $deleteTrickHandler->getForm()->createView(),
             'trick' => $trick,
             'task' => 'editTrick'
         ]);
