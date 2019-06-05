@@ -25,12 +25,12 @@ abstract class AbstractHandler
         $this->security = $security;
     }
 
-    public function handle($data, Request $request)
+    public function handle($data, Request $request, $extraData)
     {
         $this->form = $this->formFactory->create($this->getFormType(), $data)->handleRequest($request);
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
-            $this->process($data);
+            $this->process($data, $extraData);
             return true;
         }
         return false;
@@ -42,5 +42,5 @@ abstract class AbstractHandler
     }
 
     abstract function getFormType();
-    abstract function process($data);
+    abstract function process($data, $extraData);
 }

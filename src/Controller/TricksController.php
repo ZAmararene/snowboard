@@ -4,11 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Entity\Comment;
-use App\Form\CommentType;
+use App\Service\CommentHandler;
 use App\Repository\TrickRepository;
 use App\Repository\CommentRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -38,25 +37,18 @@ class TricksController extends AbstractController
     /**
      * @Route("/trick/{id}", name="trick_show")
      */
-    public function showTrick(Trick $trick, Request $request, ObjectManager $manager, CommentRepository $commentRepo, int $id)
+    public function showTrick(Trick $trick, Request $request, CommentRepository $commentRepo, int $id, CommentHandler $commentHandler)
     {
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setTrick($trick);
-            $user = $this->getUser();
-            $comment->setPseudo($user->getPseudo());
-            $comment->setUser($user);
-            $manager->persist($comment);
-            $manager->flush();
+
+        if ($commentHandler->handle($comment, $request, $trick)) {
             return $this->redirectToRoute('trick_show', ['id' => $trick->getId()]);
         }
 
         return $this->render('tricks/trickShow.html.twig', [
             'trick' => $trick,
             'comments' => $commentRepo->findBy(['trick' => $id], ['dateAdded' => 'DESC'], 10, 0),
-            'commentForm' => $form->createView(),
+            'commentForm' => $commentHandler->getForm()->createView(),
             'totalComments' => count($commentRepo->findBy(['trick' => $id])),
         ]);
     }

@@ -2,19 +2,20 @@
 
 namespace App\Service;
 
-use App\Form\AddTrickType;
+use App\Form\RegistrationType;
 use App\Service\AbstractHandler;
 
-class AddTrickHandler extends AbstractHandler
+class RegistrationHandler extends AbstractHandler
 {
     public function getFormType()
     {
-        return AddTrickType::class;
+        return RegistrationType::class;
     }
 
     public function process($data, $extraData)
     {
-        $data->setUser($this->security->getUser());
+        $imageName = $extraData->upload($data->getAvatar());
+        $data->setAvatar($imageName);
 
         $this->entityManager->persist($data);
         $this->entityManager->flush();

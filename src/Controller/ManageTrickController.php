@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Service\AddTrickHandler;
-use App\Service\DeleteTrickHandler;
+use App\Service\UpdateTrickHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +19,7 @@ class ManageTrickController extends AbstractController
     {
         $trick = new Trick();
 
-        if ($addTrickHandler->handle($trick, $request)) {
+        if ($addTrickHandler->handle($trick, $request, null)) {
             return $this->redirectToRoute('tricks');
         }
 
@@ -32,14 +32,14 @@ class ManageTrickController extends AbstractController
     /**
      * @Route("/manage/update/{id}", name="update_trick")
      */
-    public function updateTrick(Request $request, Trick $trick, DeleteTrickHandler $deleteTrickHandler)
+    public function updateTrick(Request $request, Trick $trick, UpdateTrickHandler $updateTrickHandler)
     {
-        if ($deleteTrickHandler->handle($trick, $request)) {
+        if ($updateTrickHandler->handle($trick, $request, null)) {
             return $this->redirectToRoute('tricks');
         }
 
         return $this->render('manage_trick/addTrick.html.twig', [
-            'form' => $deleteTrickHandler->getForm()->createView(),
+            'form' => $updateTrickHandler->getForm()->createView(),
             'trick' => $trick,
             'task' => 'editTrick'
         ]);
