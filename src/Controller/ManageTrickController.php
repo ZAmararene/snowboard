@@ -20,6 +20,7 @@ class ManageTrickController extends AbstractController
         $trick = new Trick();
 
         if ($addTrickHandler->handle($trick, $request, null)) {
+            $this->addFlash('notice', 'Le trick à bien été ajouté');
             return $this->redirectToRoute('tricks');
         }
 
@@ -35,6 +36,7 @@ class ManageTrickController extends AbstractController
     public function updateTrick(Request $request, Trick $trick, UpdateTrickHandler $updateTrickHandler)
     {
         if ($updateTrickHandler->handle($trick, $request, null)) {
+            $this->addFlash('notice', 'Le trick à bien été modifié');
             return $this->redirectToRoute('tricks');
         }
 
@@ -52,6 +54,9 @@ class ManageTrickController extends AbstractController
     {
         $manager->remove($trick);
         $manager->flush();
+
+        $this->addFlash('notice', 'Le trick à bien été supprimé');
+
         return $this->redirectToRoute('tricks');
     }
 }

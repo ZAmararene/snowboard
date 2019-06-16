@@ -12,45 +12,70 @@ class PicturesVideosFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $img1 = 'bae36f4b52a66d20b1e0ca894c5cd8f5.jpeg';
-        $img2 = '3ff61c199cddb576fb277e6984a6bdbd.jpeg';
-        $img3 = '2d44ccf5b06ddaa082fdab3bd886f3e7.jpeg';
 
-        $picture1 = new Picture();
-        $picture1->setName($img1);
-        $manager->persist($picture1);
-        $this->addReference('picture1', $picture1);
+        for ($i = 1; $i <= 16; $i++) {
+            $picture = new Picture();
+            $picture->setName('snow-fixture' . $i . '.jpg');
+            $manager->persist($picture);
+            $this->addReference('picture' . $i, $picture);
+        }
 
-        $picture2 = new Picture();
-        $picture2->setName($img2);
-        $manager->persist($picture2);
-        $this->addReference('picture2', $picture2);
+        $video1 = $this->media($manager, 'https://www.youtube.com/embed/Br6ZJM01I6s');
+        $this->addReference('video1',  $video1);
 
-        $picture3 = new Picture();
-        $picture3->setName($img3);
-        $manager->persist($picture3);
-        $this->addReference('picture3', $picture3);
+        $video2 = $this->media($manager, 'https://www.youtube.com/embed/2Ul5P-KucE8');
+        $this->addReference('video2',  $video2);
 
-        $video1 = new Video();
-        $video1->setVideoLink('https://www.youtube.com/embed/Br6ZJM01I6s');
-        $manager->persist($video1);
-        $this->addReference('video1', $video1);
+        $video3 = $this->media($manager, 'https://www.youtube.com/embed/hDSc7hQ0bzg');
+        $this->addReference('video3',  $video3);
 
-        $video2 = new Video();
-        $video2->setVideoLink('https://www.youtube.com/embed/2Ul5P-KucE8');
-        $manager->persist($video2);
-        $this->addReference('video2', $video2);
+        $video4 = $this->media($manager, 'https://www.youtube.com/embed/XATkSnCFsRU');
+        $this->addReference('video4',  $video4);
 
-        $video4 = new Video();
-        $video4->setVideoLink('https://www.youtube.com/embed/XATkSnCFsRU');
-        $manager->persist($video4);
-        $this->addReference('video4', $video4);
+        $video5 = $this->media($manager, 'https://www.youtube.com/embed/vquZvxGMJT0');
+        $this->addReference('video5',  $video5);
 
-        $video5 = new Video();
-        $video5->setVideoLink('https://www.youtube.com/embed/vquZvxGMJT0');
-        $manager->persist($video5);
-        $this->addReference('video5', $video5);
+        $video6 = $this->media($manager, 'https://www.youtube.com/embed/P5ZI-d-eHsI');
+        $this->addReference('video6',  $video6);
+
+        $video7 = $this->media($manager, 'https://www.youtube.com/embed/IPc7cJHt1rc');
+        $this->addReference('video7',  $video7);
+
+        $video8 = $this->media($manager, 'https://www.youtube.com/embed/yK5GFfqeYfU');
+        $this->addReference('video8',  $video8);
+
+        $video9 = $this->media($manager, 'https://www.youtube.com/embed/nwic0F9CwI0');
+        $this->addReference('video9',  $video9);
+
+        $video10 = $this->media($manager, 'https://www.youtube.com/embed/2RlDSbxsnyc');
+        $this->addReference('video10',  $video10);
+
+        $video11 = $this->media($manager, 'https://www.youtube.com/embed/Ur1Nrz23sSI');
+        $this->addReference('video11',  $video11);
+
+        $video12 = $this->media($manager, 'https://www.youtube.com/embed/wlEY-D2F6Yk');
+        $this->addReference('video12',  $video12);
+
+        $video13 = $this->media($manager, 'https://www.youtube.com/embed/viznc0h6BQg');
+        $this->addReference('video13',  $video13);
+
+        $video14 = $this->media($manager, 'https://www.youtube.com/embed/CDmW1yvY1nM');
+        $this->addReference('video14',  $video14);
+
+        $video15 = $this->media($manager, 'https://www.youtube.com/embed/q-RAJnV1dfg');
+        $this->addReference('video15',  $video15);
+
+        $video16 = $this->media($manager, 'https://www.youtube.com/embed/tIW5dLjv3CM');
+        $this->addReference('video16',  $video16);
 
         $manager->flush();
+    }
+
+    public function media(ObjectManager $manager, $media)
+    {
+        $video = new Video();
+        $video->setVideoLink($media);
+        $manager->persist($video);
+        return $video;
     }
 }

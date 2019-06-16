@@ -20,7 +20,7 @@ class TricksController extends AbstractController
     {
         return $this->render('tricks/index.html.twig', [
             'tricks' => $trickRepo->findBy([], ['dateAdded' => 'DESC'], 12, 0),
-            'totalTricks' => count($trickRepo->findAll()),
+            'totalTricks' => $trickRepo->count([]),
         ]);
     }
 

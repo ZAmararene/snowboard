@@ -39,3 +39,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/manage/trick, roles: ROLE_USER }
+        - { path: ^/manage/update, roles: ROLE_USER }
+        - { path: ^/manage/delete, roles: ROLE_USER }
