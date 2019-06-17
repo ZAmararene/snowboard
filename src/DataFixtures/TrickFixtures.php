@@ -107,7 +107,7 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
         $trick->addPicture($this->getReference($picture));
         $trick->addVideo($this->getReference($video));
 
-        for ($i = 1; $i <= mt_rand(1, 5); $i++) {
+        for ($i = 1; $i <= mt_rand(1, 3); $i++) {
             $trick->addComment($this->getReference('CommentUser' . $i));
         }
 

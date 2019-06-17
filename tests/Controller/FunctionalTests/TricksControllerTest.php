@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Repository\TrickRepository;
 
 class TricksControllerTest extends WebTestCase
 {
@@ -19,7 +20,9 @@ class TricksControllerTest extends WebTestCase
     public function testShowTrick()
     {
         $client = static::createClient();
-        $client->request('GET', '/trick/1131');
+        $container = self::$container;
+        $trick = $container->get(TrickRepository::class)->findOneBy([]);
+        $crawler = $client->request('GET', '/trick/' . $trick->getId());
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }
