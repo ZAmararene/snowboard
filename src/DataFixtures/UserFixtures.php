@@ -18,13 +18,13 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $user1 = $this->create('Amara', 'Linda', 'linda', 'linda@gmail.com');
-        $user1->setAvatar('avatar-fixture1.jpg');
+        $user1 = $this->create('chebrou', 'francis', 'francis', 'francis@gmail.com');
+        $user1->setAvatar('avatar-fixture1.png');
         $manager->persist($user1);
         $this->addReference('user1', $user1);
 
         $user2 = $this->create('Leblanc', 'Benjamin', 'benjamin', 'benjamin@gmail.com');
-        $user2->setAvatar('avatar-fixture2.png');
+        $user2->setAvatar('avatar-fixture2.jpg');
         $manager->persist($user2);
         $this->addReference('user2', $user2);
 
@@ -33,8 +33,8 @@ class UserFixtures extends Fixture
         $manager->persist($user3);
         $this->addReference('user3', $user3);
 
-        $user4 = $this->create('Eudes', 'Lycia', 'lycia', 'lycia@gmail.com');
-        $user4->setAvatar('avatar-fixture4.jpg');
+        $user4 = $this->create('gourdin', 'gilles', 'gilles', 'gilles@gmail.com');
+        $user4->setAvatar('avatar-fixture4.jpeg');
         $manager->persist($user4);
         $this->addReference('user4', $user4);
 
