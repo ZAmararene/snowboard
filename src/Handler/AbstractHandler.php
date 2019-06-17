@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Handler;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;

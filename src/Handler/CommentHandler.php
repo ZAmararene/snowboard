@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace App\Handler;
 
 use App\Form\CommentType;
-use App\Service\AbstractHandler;
+use App\Handler\AbstractHandler;
 
 class CommentHandler extends AbstractHandler
 {

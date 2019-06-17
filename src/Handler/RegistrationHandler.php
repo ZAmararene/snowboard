@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace App\Handler;
 
 use App\Form\RegistrationType;
-use App\Service\AbstractHandler;
+use App\Handler\AbstractHandler;
 
 class RegistrationHandler extends AbstractHandler
 {
@@ -14,7 +14,12 @@ class RegistrationHandler extends AbstractHandler
 
     public function process($data, $extraData)
     {
-        $imageName = $extraData->upload($data->getAvatar());
+        if ($data->getAvatar() === null) {
+            $imageName = 'avatar.png';
+        } else {
+            $imageName = $extraData->upload($data->getAvatar());
+        }
+
         $data->setAvatar($imageName);
 
         $this->entityManager->persist($data);

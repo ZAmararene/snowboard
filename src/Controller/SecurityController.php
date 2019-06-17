@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Mailer\MailerNotify;
 use App\Service\PictureUploader;
-use App\Service\RegistrationHandler;
+use App\Handler\RegistrationHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

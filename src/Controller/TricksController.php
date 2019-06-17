@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Entity\Comment;
-use App\Service\CommentHandler;
+use App\Handler\CommentHandler;
 use App\Repository\TrickRepository;
 use App\Repository\CommentRepository;
 use Symfony\Component\HttpFoundation\Request;

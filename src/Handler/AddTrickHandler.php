@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace App\Handler;
 
 use App\Form\AddTrickType;
-use App\Service\AbstractHandler;
+use App\Handler\AbstractHandler;
 
 class AddTrickHandler extends AbstractHandler
 {

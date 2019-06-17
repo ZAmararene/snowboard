@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Trick;
-use App\Service\AddTrickHandler;
-use App\Service\UpdateTrickHandler;
+use App\Handler\AddTrickHandler;
+use App\Handler\UpdateTrickHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
