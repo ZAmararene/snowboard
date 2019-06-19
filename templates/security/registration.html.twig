@@ -36,12 +36,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    {# Correction du bug lié au téléchargement de fichier de bootstrap 4, le fichier ou image téléchargé n'apparait pas dans le input #}
-    <script>
-        $(document).on('change', '.custom-file-input', function () {
-            let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
-            $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
-        });
-
-    </script>
+    {{ parent() }}
 {% endblock %}

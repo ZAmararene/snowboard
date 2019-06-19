@@ -60,7 +60,5 @@
     </section>
 {% endblock %}
 {% block javascripts %}
-    <script>
-            $('.alert').alert();
-        </script>
+    {{ parent() }}
 {% endblock %}

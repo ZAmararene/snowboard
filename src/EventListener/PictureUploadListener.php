@@ -30,7 +30,7 @@ class PictureUploadListener
             return;
         }
 
-        $fileName = $this->uploader->uploadPicture($file);
+        $fileName = $this->uploader->upload($file);
         $picture->setName($fileName);
     }
 
@@ -48,7 +48,7 @@ class PictureUploadListener
             return;
         }
 
-        $fileName = $this->uploader->uploadPicture($file);
+        $fileName = $this->uploader->upload($file);
         $picture->setName($fileName);
     }
 }
