@@ -37,7 +37,7 @@ class TricksController extends AbstractController
     /**
      * @Route("/trick/{id}", name="trick_show")
      */
-    public function showTrick(Trick $trick, Request $request, CommentRepository $commentRepo, int $id, CommentHandler $commentHandler)
+    public function showTrick(Trick $trick, Request $request, CommentRepository $commentRepo, CommentHandler $commentHandler)
     {
         $comment = new Comment();
 
@@ -47,9 +47,9 @@ class TricksController extends AbstractController
 
         return $this->render('tricks/trickShow.html.twig', [
             'trick' => $trick,
-            'comments' => $commentRepo->findBy(['trick' => $id], ['dateAdded' => 'DESC'], 10, 0),
+            'comments' => $commentRepo->findBy(['trick' => $trick->getId()], ['dateAdded' => 'DESC'], 10, 0),
             'commentForm' => $commentHandler->getForm()->createView(),
-            'totalComments' => count($commentRepo->findBy(['trick' => $id])),
+            'totalComments' => count($commentRepo->findBy(['trick' => $trick->getId()])),
         ]);
     }
 

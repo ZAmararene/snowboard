@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PictureUploader
 {
-    // const DEFAULT_PICTURE = 'avatar.png';
-
     private $targetDirectory;
 
     public function __construct($targetDirectory)
