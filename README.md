@@ -11,35 +11,35 @@ L'on objectif est la création d'un site collaboratif pour faire connaitre le sn
 ## Installation
 Récupérer les sources du projet :
 ```
-> git clone git@github.com:ZAmararene/snowboard.git
+$ git clone git@github.com:ZAmararene/snowboard.git
 ```
 
 Installer les dépendances:
 ```
-> composer install
+$ composer install
 ```
 
 Configurer la connexion à la base de donnée dans le ficher :
 ```
-> .env
+$ .env
 ```
 
 Créer la base de données :
 ```
-> php bin/console doctrine:database:create
+$ php bin/console doctrine:database:create
 ```
 
 Migrer les tables dans la base de données :
 ```
-> php bin/console doctrine:migrations:migrate
+$ php bin/console doctrine:migrations:migrate
 ```
 
 Charger les fixtures dans la base de données :
 ```
-> php bin/console doctrine:fixtures:load
+$ php bin/console doctrine:fixtures:load
 ```
 
 Lancer le serveur :
 ```
-> php bin/console server:run
+$ php bin/console server:run
 ```

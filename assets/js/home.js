@@ -53,13 +53,3 @@ $(".btn-add").on("click", function () {
 $("body").on("click", ".btn-remove", function () {
     $($(this).data("rel")).remove();
 });
-
-/***************************************************************** */
-// Correction du bug lié au téléchargement de fichier de bootstrap 4,
-// le fichier ou image téléchargé n'apparait pas dans le input
-/*********************************************************************/
-$(document).on('change', '.custom-file-input', function () {
-    let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
-    $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
-});
-
