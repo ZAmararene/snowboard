@@ -91,9 +91,34 @@
                                     <a href="{{ path('update_trick', {'id' : trick.id}) }}" class="text-decoration-none">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="{{ path('delete_trick', {'id' : trick.id}) }}" class="text-decoration-none">
+                                    {# <a href="{{ path('delete_trick', {'id' : trick.id}) }}" class="text-decoration-none">
                                         <i class="fas fa-trash-alt"></i>
-                                    </a>
+                                    </a> #}
+
+                                    <button type="button" class="btn-delete-trick btn" data-toggle="modal" data-target="#deleteTrick">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <div class="modal fade" id="deleteTrick" tabindex="-1" role="dialog" aria-labelledby="deleteTrickLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5>Supprimer le trick</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="text-center">Veuillez confirmer la suppression du trick</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Fermer</button>
+                                                    <a href="{{ path('delete_trick', {'id' : trick.id}) }}" class="btn btn-primary text-decoration-none rounded-0">
+                                                        Supprimer
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
