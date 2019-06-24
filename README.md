@@ -1,5 +1,5 @@
 # snowboard
-## Zina Amararene
+[![Maintainability](https://api.codeclimate.com/v1/badges/9655c3ef05dcfc6cfc86/maintainability)](https://codeclimate.com/github/ZAmararene/snowboard/maintainability)
 
 ## Description du projet
 L'on objectif est la création d'un site collaboratif pour faire connaitre le snowboard auprès du grand public et aider à l'apprentissage des figures (tricks).

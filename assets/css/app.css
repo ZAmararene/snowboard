@@ -105,8 +105,17 @@ nav {
     color: #FFF;
 }
 
-#show-trick .trick{
+#show-trick .trick {
     height: 100%;
+}
+
+#tricks .btn-delete-trick {
+    color: #CB442E;
+    margin-bottom: 3px;
+}
+
+#tricks .modal-header h5 {
+    color:  #E08D34;
 }
 
 /******************************

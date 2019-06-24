@@ -39,7 +39,7 @@ $(document).on('change', '.custom-file-input', function () {
 });
 
 /***************************************************************** */
-// Gestion des Collection of Forms pour l'ajout de trick (figure)
+// Gestion des Collections of Forms pour l'ajout de trick (figure)
 /*********************************************************************/
 
 $(".btn-add").on("click", function () {
