@@ -24,13 +24,13 @@ class PictureUploadListener
             return;
         }
 
-        $file = $picture->getName();
+        $file = $picture->getFile();
         // only upload new file
         if (!$file instanceof UploadedFile) {
             return;
         }
-
         $fileName = $this->uploader->upload($file);
+        // $picture->setFile($fileName);
         $picture->setName($fileName);
     }
 
@@ -42,13 +42,13 @@ class PictureUploadListener
             return;
         }
 
-        $file = $picture->getName();
+        $file = $picture->getFile();
         // only upload new file
         if (!$file instanceof UploadedFile) {
             return;
         }
-
         $fileName = $this->uploader->upload($file);
+        // $picture->setFile($fileName);
         $picture->setName($fileName);
     }
 }

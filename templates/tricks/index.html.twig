@@ -84,16 +84,13 @@
 
                         <div class="card-footer font-weight-bolder rounded-0">
                             <div class="row">
-                                <div class="col-lg-8 col-md-8 col-8 text-truncate">
-                                    <a href="{{ path('trick_show', {'id' : trick.id}) }}" class="text-uppercase text-dark">{{ trick.name }}</a>
+                                <div class="col-7 text-truncate">
+                                    <a href="{{ path('trick_show', {'id' : trick.id}) }}" class="text-uppercase text-dark align-middle pt-3">{{ trick.name }}</a>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-4 text-right">
-                                    <a href="{{ path('update_trick', {'id' : trick.id}) }}" class="text-decoration-none">
+                                <div class="col-5 text-right">
+                                    <a href="{{ path('update_trick', {'id' : trick.id}) }}" class="text-decoration-none align-middle">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    {# <a href="{{ path('delete_trick', {'id' : trick.id}) }}" class="text-decoration-none">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a> #}
 
                                     <button type="button" class="btn-delete-trick btn" data-toggle="modal" data-target="#deleteTrick">
                                         <i class="fas fa-trash-alt"></i>

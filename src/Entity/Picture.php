@@ -30,6 +30,8 @@ class Picture
      */
     private $name;
 
+    // private $file;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Trick", inversedBy="pictures")
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -46,6 +48,11 @@ class Picture
         return $this->name;
     }
 
+    // public function getFile()
+    // {
+    //     return $this->file;
+    // }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -55,6 +62,11 @@ class Picture
     {
         $this->name = $name;
     }
+
+    // public function setFile($file)
+    // {
+    //     $this->file = $file;
+    // }
 
     public function getTrick(): ?Trick
     {

@@ -14,19 +14,17 @@ class UpdateTrickHandler extends AbstractHandler
 
     public function process($data, $extraData)
     {
-        // dd($data);
-        foreach ($data->getPictures() as $picture) {
-            if (null === $picture->getName() || null === $picture->getId()) {
-                $this->entityManager->remove($picture);
-            }
-        }
+        // dd($this->form->getData());
+        $newFile = $this->form->getData()['file'];
+        // dd($newFile);
+        // $newFile = $this->form['file']->getData();
 
-        foreach ($data->getVideos() as $video) {
-            if (null === $video->getVideoLink()) {
-                $this->entityManager->remove($video);
-            }
-        }
-
+        // foreach ($newFile as $picture) {
+        //     if ($picture) {
+        //         $file = $extraData->upload($picture->getName());
+        //         $picture->setName($file);
+        //     }
+        // }
         $data->setDateModification(new \DateTime());
         $this->entityManager->flush();
     }
