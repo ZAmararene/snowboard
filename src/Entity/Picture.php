@@ -19,7 +19,10 @@ class Picture
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Assert\Image(
+     */
+    private $name;
+    /**
+     *  @Assert\Image(
      *     maxWidth = 2000,
      *     maxWidthMessage = "La largeur de l'image doit être inférieur à 2000px",
      *     maxHeight = 1000,
@@ -28,9 +31,7 @@ class Picture
      *     mimeTypesMessage = "Télécharger une image valide"
      * )
      */
-    private $name;
-
-    // private $file;
+    private $file;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Trick", inversedBy="pictures")
@@ -48,10 +49,10 @@ class Picture
         return $this->name;
     }
 
-    // public function getFile()
-    // {
-    //     return $this->file;
-    // }
+    public function getFile()
+    {
+        return $this->file;
+    }
 
     public function setId($id)
     {
@@ -63,10 +64,10 @@ class Picture
         $this->name = $name;
     }
 
-    // public function setFile($file)
-    // {
-    //     $this->file = $file;
-    // }
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
 
     public function getTrick(): ?Trick
     {

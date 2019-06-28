@@ -8,32 +8,20 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class PictureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('name', FileType::class, [
-            //     'label' => 'Image',
-            //     'required' => false,
-            //     // 'data_class' => null
-            // ]);
-            ->add('file', FileType::class, [
+            ->add('name', HiddenType::class, [
                 'label' => 'Image',
                 'required' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2024k',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/jpeg',
-                            'image/png'
-                        ],
-                        'mimeTypesMessage' => 'Télécharger une image valide (jpg, jpeg, png)',
-                    ])
-                ],
+            ])
+            ->add('file', FileType::class, [
+                'label' => 'Image',
+                'required' => false
             ]);
     }
 

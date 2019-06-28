@@ -175,7 +175,7 @@ class Trick
 
     public function addPicture(Picture $picture): self
     {
-        if (!$this->pictures->contains($picture) && $picture->getName() !== null) {
+        if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;
             $picture->setTrick($this);
         }
