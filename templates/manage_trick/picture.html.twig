@@ -1,0 +1,18 @@
+
+<div id="picture-{{ form.vars.name }}">
+    <div class="row align-items-center">
+        <div class="col-10">
+            {{ form_widget(form.name) }}
+            {% if form.vars.data.name is defined and form.vars.data.name is not null  %}
+                <div>
+                    <img src="{{ asset('uploads/pictures/') ~ form.vars.data.name }}" class="img-thumbnail img-fluid rounded-0" alt="image neige">
+                </div>
+                {% else %}
+                    {{ form_row(form.file) }}
+            {% endif %}
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-danger btn-remove rounded-0" data-rel="#picture-{{ form.vars.name }}"><i class="far fa-trash-alt"></i></button>
+        </div>
+    </div>
+</div>

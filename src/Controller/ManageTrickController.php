@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Handler\AddTrickHandler;
+use App\Service\PictureUploader;
 use App\Handler\UpdateTrickHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -33,9 +34,9 @@ class ManageTrickController extends AbstractController
     /**
      * @Route("/manage/update/{id}", name="update_trick")
      */
-    public function updateTrick(Request $request, Trick $trick, UpdateTrickHandler $updateTrickHandler)
+    public function updateTrick(Request $request, Trick $trick, UpdateTrickHandler $updateTrickHandler, PictureUploader $pictureUploader)
     {
-        if ($updateTrickHandler->handle($trick, $request, null)) {
+        if ($updateTrickHandler->handle($trick, $request, $pictureUploader)) {
             $this->addFlash('notice', 'Le trick à bien été modifié');
             return $this->redirectToRoute('tricks');
         }
