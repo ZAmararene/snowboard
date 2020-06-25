@@ -135,7 +135,12 @@ div.trumbowyg-box, div.trumbowyg-editor, .trumbowyg-textarea {
 }
 
 #img-trick-detail img { /* image du header du détail du trick*/
-    height: 350px;
+    height: 450px;
+}
+
+.img-cover {
+    object-fit: cover;
+    /* background-size: cover !important; */
 }
 
 .separator{

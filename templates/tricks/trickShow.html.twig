@@ -7,7 +7,7 @@
 {% block header %}
     {% if trick.pictures is empty %}
         <div class="card text-white rounded-0" id="img-trick-detail">
-            <img src="{{ asset('images/bg7.jpg') }}" class=" img-fluid x-100" alt="image neige">
+            <img src="{{ asset('images/bg7.jpg') }}" class="img-cover img-fluid x-100" alt="image neige">
             <div class="card-img-overlay">
                 {% if app.user %}
                     <div class="edit-delete float-right p-2 mr-5">
@@ -26,7 +26,7 @@
     {% for picture in trick.pictures %}
         {% if loop.first %}
             <div class="card text-white rounded-0" id="img-trick-detail">
-                <img src="{{ asset('uploads/pictures/') ~ picture.name }}" class=" img-fluid y-100" alt="image neige">
+                <img src="{{ asset('uploads/pictures/') ~ picture.name }}" class="img-cover img-fluid y-100" alt="image neige">
                 <div class="card-img-overlay">
                     {% if app.user %}
                         <div class="edit-delete float-right p-2 mr-5">
